@@ -1,0 +1,55 @@
+[global]
+disableWidgetStateDuplicationWarning = true
+
+[client]
+# Hides the developer menu and the Deploy button; lawyers only see the app.
+toolbarMode = "viewer"
+showErrorDetails = "none"
+showSidebarNavigation = true
+
+[browser]
+# No telemetry: nothing about usage leaves this computer.
+gatherUsageStats = false
+
+[server]
+# Only this computer can open the app. Without this, Streamlit listens on every
+# network interface and anyone on the office Wi-Fi could read the register.
+address = "localhost"
+enableStaticServing = true
+headless = true
+maxUploadSize = 25
+
+[theme]
+base = "light"
+primaryColor = "#1E2A44"
+backgroundColor = "#F7F8FA"
+secondaryBackgroundColor = "#FFFFFF"
+textColor = "#1F2937"
+linkColor = "#1E2A44"
+borderColor = "#E5E7EB"
+showWidgetBorder = true
+baseRadius = "10px"
+buttonRadius = "8px"
+baseFontSize = 15
+font = "Inter, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif"
+headingFont = "Inter, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif"
+headingFontWeights = [650, 600, 600, 600, 600, 600]
+headingFontSizes = ["28px", "20px", "17px", "15px", "15px", "15px"]
+redColor = "#C0392B"
+orangeColor = "#D68910"
+blueColor = "#2E86C1"
+greenColor = "#1E8449"
+yellowColor = "#B8963E"
+chartCategoricalColors = ["#1E2A44", "#B8963E", "#2E86C1", "#1E8449", "#D68910", "#C0392B", "#6B7280"]
+
+[[theme.fontFaces]]
+family = "Inter"
+url = "app/static/fonts/Inter-Variable.woff2"
+weight = "100 900"
+
+[theme.sidebar]
+backgroundColor = "#1E2A44"
+secondaryBackgroundColor = "#26345A"
+textColor = "#E5E7EB"
+primaryColor = "#B8963E"
+borderColor = "#2F3D63"

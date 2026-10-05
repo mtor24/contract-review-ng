@@ -1,0 +1,16 @@
+.env
+.env.*
+!.env.example
+node_modules/
+e2e/.env.test
+e2e/.auth/
+e2e/results.json
+test-results/
+playwright-report/
+.venv/
+__pycache__/
+.pytest_cache/
+data/lexreview.db
+data/uploads/
+data/local_config.yaml
+data/lexreview.db-*

@@ -1,0 +1,428 @@
+# Clause classification rules - EDITABLE BY NON-PROGRAMMERS
+#
+# HOW THIS FILE WORKS
+# Each entry under "labels" describes one kind of contract clause. The
+# classifier gives every clause a score for every label and picks the
+# label with the highest score. A clause that scores zero everywhere is
+# labelled "other".
+#
+# HOW TO EDIT
+# - heading_keywords: lower-case words or short phrases that typically
+#   appear in the clause HEADING (the title line, e.g. "GOVERNING LAW").
+#   Heading matches are worth heading_weight points each (see bottom).
+# - phrases: lower-case phrases looked up in the full clause TEXT. Each
+#   distinct matched phrase is worth phrase_weight points.
+# - Keep everything lower-case; matching is case-insensitive but the
+#   file must stay lower-case for consistency.
+# - Use plain ASCII only (no fancy quotes or dashes). The Naira sign is
+#   fine in contract text but keep it out of this file.
+# - Add a brand-new label by copying an existing block and giving it a
+#   new unique id (snake_case). The order of labels matters: ties are
+#   broken in favour of the label listed first here.
+# - heading_weight and phrase_weight at the bottom tune how much a
+#   heading match counts versus a text-phrase match.
+# - only_for: optional list of contract type ids (employment, supply,
+#   lease, nda, partnership, sla, loan). If set, the label only applies
+#   to those contract types; for any other contract type it scores 0.
+#   When no contract type is given, every label is allowed.
+
+labels:
+  parties:
+    name: "Parties"
+    heading_keywords:
+      - "parties"
+      - "between"
+      - "recitals"
+      - "formation"
+      - "formation and name"
+      - "nature of business"
+    phrases:
+      - "hereinafter referred to as"
+      - "rc number"
+      - "incorporated in nigeria"
+      - "of the one part"
+      - "of the other part"
+      - "registered office"
+      - "between:"
+      - "a company incorporated in"
+      - "principal place of business"
+      - "partnership firm"
+      - "carrying on business"
+      - "the business of the firm"
+      - "successors in title"
+      - "permitted assigns"
+
+  definitions:
+    name: "Definitions"
+    heading_keywords:
+      - "definitions"
+      - "interpretation"
+      - "definition"
+    phrases:
+      - "means"
+      - "in this agreement"
+      - "shall mean"
+      - "shall have the meaning"
+      - "the following terms"
+      - "unless the context otherwise requires"
+      - "as defined"
+      - "each of the following"
+
+  term:
+    name: "Term"
+    heading_keywords:
+      - "term"
+      - "duration"
+      - "commencement"
+      - "renewal"
+      - "term and renewal"
+      - "admission"
+      - "admission of new partners"
+    phrases:
+      - "shall commence on"
+      - "initial term"
+      - "shall continue for"
+      - "renewal period"
+      - "come into force"
+      - "term of"
+      - "expiry of the term"
+      - "commencement date"
+      - "shall continue unless"
+      - "admitted to the firm"
+      - "deed of adherence"
+      - "period of"
+
+  payment:
+    name: "Payment"
+    heading_keywords:
+      - "payment"
+      - "price"
+      - "fees"
+      - "price and payment"
+      - "fees and payment"
+      - "salary"
+      - "salary and benefits"
+      - "capital contributions"
+      - "capital"
+      - "profit sharing"
+      - "profits"
+    phrases:
+      - "shall pay"
+      - "invoice"
+      - "contract value"
+      - "payable"
+      - "monthly fee"
+      - "unit price"
+      - "late payment"
+      - "monthly salary"
+      - "pay each invoice"
+      - "in arrears"
+      - "capital contribution"
+      - "capital of the firm"
+      - "contribute"
+      - "net profits"
+      - "profits and losses"
+      - "distributed"
+      - "profit-sharing"
+      - "interest on capital"
+      - "paid out"
+
+  termination:
+    name: "Termination"
+    heading_keywords:
+      - "termination"
+      - "term and termination"
+      - "acceleration and termination"
+      - "dissolution"
+      - "dissolution and termination"
+      - "retirement"
+      - "retirement and expulsion"
+      - "expulsion"
+    phrases:
+      - "terminate this agreement"
+      - "may terminate"
+      - "upon termination"
+      - "effective date of termination"
+      - "material breach"
+      - "shall be dissolved"
+      - "wind up"
+      - "retire from the firm"
+      - "may be expelled"
+      - "ceases to be a partner"
+      - "upon dissolution"
+
+  confidentiality:
+    name: "Confidentiality"
+    heading_keywords:
+      - "confidentiality"
+      - "confidential"
+      - "non-disclosure"
+      - "confidential information"
+      - "return of information"
+    phrases:
+      - "confidential information"
+      - "keep confidential"
+      - "shall not disclose"
+      - "confidential nature"
+      - "third party"
+      - "trade secrets"
+      - "obligation of confidence"
+      - "non-disclosure"
+      - "return or destroy"
+      - "unauthorised use or disclosure"
+
+  indemnity:
+    name: "Indemnity"
+    heading_keywords:
+      - "indemnity"
+      - "indemnities"
+      - "indemnification"
+      - "remedies"
+    phrases:
+      - "shall indemnify"
+      - "indemnify and hold harmless"
+      - "the indemnity"
+      - "against all claims"
+      - "indemnified claim"
+      - "hold harmless"
+      - "injunctive relief"
+      - "adequate remedy"
+      - "against all losses"
+
+  limitation_of_liability:
+    name: "Limitation of Liability"
+    heading_keywords:
+      - "liability"
+      - "limitation of liability"
+      - "limitation"
+    phrases:
+      - "shall not exceed"
+      - "aggregate liability"
+      - "loss of profit"
+      - "indirect loss"
+      - "consequential loss"
+      - "exclude or limit"
+      - "total liability"
+      - "liable for any"
+
+  governing_law:
+    name: "Governing Law"
+    heading_keywords:
+      - "governing law"
+      - "choice of law"
+      - "applicable law"
+    phrases:
+      - "governed by"
+      - "laws of the federal republic of nigeria"
+      - "governing law"
+      - "construed in accordance"
+      - "laws of"
+      - "applicable law"
+
+  dispute_resolution:
+    name: "Dispute Resolution"
+    heading_keywords:
+      - "dispute resolution"
+      - "dispute"
+      - "arbitration"
+      - "disputes"
+      - "jurisdiction"
+    phrases:
+      - "exclusive jurisdiction"
+      - "any dispute arising"
+      - "arbitration"
+      - "arbitral tribunal"
+      - "seat of arbitration"
+      - "seat of the arbitration"
+      - "high court"
+      - "mediation"
+      - "amicable settlement"
+      - "amicably"
+      - "dispute arising"
+      - "sole arbitrator"
+      - "exclusive jurisdiction"
+      - "arbitration and mediation act"
+
+  force_majeure:
+    name: "Force Majeure"
+    heading_keywords:
+      - "force majeure"
+    phrases:
+      - "force majeure"
+      - "beyond its reasonable control"
+      - "beyond the reasonable control"
+      - "flood"
+      - "epidemic"
+      - "act of god"
+      - "civil unrest"
+
+  data_protection:
+    name: "Data Protection"
+    heading_keywords:
+      - "data protection"
+      - "personal data"
+      - "data"
+      - "privacy"
+    phrases:
+      - "personal data"
+      - "data protection"
+      - "nigeria data protection act"
+      - "data subject"
+      - "process personal data"
+      - "personal data breach"
+
+  assignment:
+    name: "Assignment"
+    heading_keywords:
+      - "assignment"
+      - "assign"
+    phrases:
+      - "assign or transfer"
+      - "may assign"
+      - "may not assign"
+      - "assign this agreement"
+      - "assign its rights"
+      - "prior written consent of the other party"
+
+  notices:
+    name: "Notices"
+    heading_keywords:
+      - "notices"
+      - "notice"
+    phrases:
+      - "any notice"
+      - "deemed served"
+      - "registered post"
+      - "delivered by hand"
+      - "in writing and delivered"
+      - "addressed to"
+      - "date of transmission"
+
+  intellectual_property:
+    name: "Intellectual Property"
+    heading_keywords:
+      - "intellectual property"
+      - "ip"
+      - "copyright"
+      - "patents"
+      - "trademarks"
+    phrases:
+      - "intellectual property"
+      - "copyright"
+      - "trademark"
+      - "patent"
+      - "source code"
+      - "proprietary rights"
+      - "inventions"
+
+  non_compete:
+    name: "Non-Compete"
+    heading_keywords:
+      - "non-compete"
+      - "non compete"
+      - "restraint"
+      - "restrictive covenants"
+    phrases:
+      - "competes with"
+      - "competing business"
+      - "shall not"
+      - "solicit or entice"
+      - "directly or indirectly engage"
+      - "carry on a competing"
+
+  rent:
+    name: "Rent"
+    # Rent clauses only appear in leases.
+    only_for:
+      - lease
+    heading_keywords:
+      - "rent"
+      - "rent review"
+      - "rental"
+    phrases:
+      - "rent"
+      - "per annum"
+      - "rent review"
+      - "annual rent"
+      - "service charge"
+      - "rental year"
+      - "review date"
+
+  repayment:
+    name: "Repayment"
+    # Repayment mechanics only appear in loan agreements.
+    only_for:
+      - loan
+    heading_keywords:
+      - "repayment"
+      - "the facility"
+      - "facility"
+      - "interest"
+      - "default interest"
+      - "instalment"
+      - "loan"
+      - "covenants"
+      - "events of default"
+    phrases:
+      - "repay"
+      - "instalment"
+      - "interest at the rate"
+      - "drawdown"
+      - "default interest"
+      - "security"
+      - "mortgage"
+      - "guarantee"
+      - "term loan"
+      - "principal sum"
+      - "prepay"
+      - "audited financial statements"
+      - "additional indebtedness"
+      - "insolvent"
+      - "liquidation"
+      - "receiver"
+      - "mortgaged property"
+      - "breach of any covenant"
+
+  service_levels:
+    name: "Service Levels"
+    # Service-level commitments only appear in SLAs and supply contracts.
+    only_for:
+      - sla
+      - supply
+    heading_keywords:
+      - "service level"
+      - "service levels"
+      - "service credits"
+      - "availability"
+      - "uptime"
+      - "performance standards"
+    phrases:
+      - "uptime"
+      - "service credit"
+      - "service credits"
+      - "response time"
+      - "availability"
+      - "monthly availability"
+      - "service level"
+      - "resolution within"
+      - "response within"
+      - "priority 1"
+      - "shall supply"
+      - "deliver"
+      - "purchase order"
+      - "consignment"
+      - "quality certificate"
+      - "perform such duties"
+      - "devote the whole of his time"
+      - "managing partner"
+      - "day-to-day administration"
+      - "partners' meeting"
+      - "bank account"
+      - "books of account"
+      - "audited annually"
+      - "cheques"
+
+# A heading keyword match is worth 3 phrase matches because headings are
+# strong, deliberate signals while phrases can appear incidentally.
+heading_weight: 3
+phrase_weight: 1

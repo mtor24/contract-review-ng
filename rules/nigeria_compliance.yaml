@@ -1,0 +1,109 @@
+# Nigeria compliance checks - EDITABLE BY NON-PROGRAMMERS
+#
+# IMPORTANT: these are INDICATIVE checks only. They use simple keyword
+# matching to flag things a Nigerian lawyer may want to look at. They do
+# NOT replace legal advice and they do NOT prove a contract complies with
+# any law. Always have a qualified lawyer confirm against current
+# Nigerian legislation.
+#
+# HOW TO EDIT THIS FILE
+# Each check below runs against the whole contract and reports either a
+# "Pass" (something expected was found) or a failure finding. Every check
+# has:
+#   id:            a unique short name (snake_case) - never change ids.
+#   name:          human-readable title shown in the report.
+#   applies_to:    list of contract type ids the check runs on, or "all".
+#   applies_if:    optional list of regexes; the check only runs when one
+#                  matches the full contract text (case-insensitive).
+#   pass_if:       list of regexes (case-insensitive); the check passes
+#                  when any matches. Add "labels: [...]" to restrict the
+#                  search to clauses with those classification labels.
+#   requires_label: alternative to pass_if; the check passes when any
+#                  clause is classified with this label.
+#   fail_severity: High, Medium or Low (used when the check fails).
+#   pass_reason / fail_reason: plain-English text shown in the report.
+#   reference:     the statute or rule the check is based on.
+
+disclaimer: "Indicative check only. This is not legal advice; confirm against current Nigerian law."
+
+checks:
+  - id: governing_law_nigeria
+    name: Nigerian governing law
+    applies_to: all
+    pass_if:
+      - "nigeria"
+    labels: [governing_law]
+    fail_severity: High
+    pass_reason: "The governing law clause names Nigeria."
+    fail_reason: "The governing law clause does not name Nigeria."
+    reference: "Choice of law: Nigerian law for Nigerian parties and assets"
+
+  - id: ndpa_reference
+    name: Nigeria Data Protection Act reference
+    applies_to: all
+    applies_if:
+      - "personal data"
+      - "data protection"
+      - "phone numbers"
+    pass_if:
+      - "Nigeria Data Protection Act"
+      - "\\bNDPA\\b"
+    fail_severity: High
+    pass_reason: "The contract refers to the Nigeria Data Protection Act."
+    fail_reason: "The contract handles personal data but does not refer to the Nigeria Data Protection Act."
+    reference: "Nigeria Data Protection Act 2023"
+
+  - id: ama_2023_reference
+    name: Arbitration and Mediation Act reference
+    applies_to: all
+    applies_if:
+      - "arbitrat"
+    pass_if:
+      - "Arbitration and Mediation Act"
+    fail_severity: Medium
+    pass_reason: "The arbitration clause refers to the Arbitration and Mediation Act."
+    fail_reason: "The contract provides for arbitration but does not refer to the Arbitration and Mediation Act 2023."
+    reference: "Arbitration and Mediation Act 2023"
+
+  - id: stamp_duty_reminder
+    name: Stamp duty reminder
+    applies_to: [lease, loan]
+    pass_if:
+      - "stamp dut"
+      - "\\bstamped\\b"
+      - "Stamp Duties Act"
+    fail_severity: Medium
+    pass_reason: "The contract mentions stamping or stamp duty."
+    fail_reason: "No stamp duty provision found. This instrument may need to be stamped within the statutory period; for leases over land, Governor's consent and registration may also apply."
+    reference: "Stamp Duties Act (as amended by the Finance Acts); Land Use Act 1978"
+
+  - id: labour_act_reference
+    name: Labour Act reference
+    applies_to: [employment]
+    pass_if:
+      - "Labour Act"
+    fail_severity: Medium
+    pass_reason: "The contract refers to the Labour Act."
+    fail_reason: "The contract does not refer to the Labour Act."
+    reference: "Labour Act, Cap L1 LFN 2004"
+
+  - id: employment_notice_period
+    name: Employment notice period
+    applies_to: [employment]
+    pass_if:
+      - "\\(\\d+\\)\\s*(day|week|month)s?'?\\s*(written\\s+)?notice"
+      - "\\d+\\s*(day|week|month)s?'?\\s*(written\\s+)?notice"
+      - "notice period"
+    fail_severity: Medium
+    pass_reason: "A notice period for termination is stated."
+    fail_reason: "No notice period for termination found; the Labour Act sets minimum notice periods."
+    reference: "Labour Act, s. 11 (minimum notice periods)"
+
+  - id: employment_termination_clause
+    name: Employment termination clause
+    applies_to: [employment]
+    requires_label: termination
+    fail_severity: High
+    pass_reason: "The contract contains a termination clause."
+    fail_reason: "No termination clause found in this employment contract."
+    reference: "Labour Act, s. 11"

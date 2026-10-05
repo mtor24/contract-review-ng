@@ -1,0 +1,280 @@
+/* LexReview NG - the single injected stylesheet.
+   Palette: navy #1E2A44, gold #B8963E, surfaces #FFFFFF on #F7F8FA. */
+
+/* Hide Streamlit chrome; lawyers only see the app. */
+[data-testid="stToolbar"],
+[data-testid="stDecoration"],
+#MainMenu,
+footer,
+[data-testid="stHeaderActionElements"],
+button[title="Deploy"] {
+  display: none !important;
+}
+
+.main .block-container,
+[data-testid="stAppViewContainer"] .block-container {
+  max-width: 1280px;
+  padding-top: 32px;
+}
+
+/* Cards. In Streamlit 1.65 a bordered st.container is the vertical block placed directly
+   inside a layout wrapper; Streamlit draws its border, we add the white surface and shadow. */
+[data-testid="stLayoutWrapper"] > [data-testid="stVerticalBlock"]:not([direction="row"]) {
+  background: #FFFFFF;
+  border-radius: 10px;
+  box-shadow: 0 1px 2px rgba(16, 24, 40, 0.06);
+}
+
+[data-testid="stMetric"] {
+  background: #FFFFFF;
+  border: 1px solid #E5E7EB !important;
+  border-radius: 10px;
+  box-shadow: 0 1px 2px rgba(16, 24, 40, 0.06);
+  padding: 16px;
+}
+
+[data-testid="stMetric"] [data-testid="stMetricValue"] {
+  font-size: 28px;
+  font-weight: 650;
+  color: #1E2A44;
+}
+
+[data-testid="stMetric"] [data-testid="stMetricLabel"] {
+  font-size: 13px;
+  color: #6B7280;
+}
+[data-testid="stMetric"] [data-testid="stMetricLabel"] p {
+  white-space: normal;
+  overflow: visible;
+}
+
+/* Sidebar: navy theme comes from config.toml; brand block sits below the logo. */
+.brand {
+  font-size: 20px;
+  font-weight: 650;
+  color: #FFFFFF;
+  line-height: 1.3;
+  margin: 4px 0 0 0;
+}
+
+.brand-sub {
+  font-size: 12px;
+  color: #9AA4BF;
+  margin: 0 0 8px 0;
+}
+
+/* "Runs locally" badge: gold shield, thin gold border at 40% opacity. */
+.local-badge {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  border: 1px solid rgba(184, 150, 62, 0.4);
+  border-radius: 8px;
+  padding: 8px 10px;
+  font-size: 12px;
+  line-height: 1.5;
+  color: #E5E7EB;
+  margin-top: 16px;
+}
+
+.local-badge svg {
+  flex: none;
+  margin-top: 1px;
+  stroke: #B8963E;
+  fill: none;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.sidebar-disclaimer {
+  font-size: 11px;
+  color: #9AA4BF;
+  margin-top: 12px;
+  line-height: 1.5;
+  line-height: 1.5;
+}
+
+/* Page header. */
+.page-title {
+  font-size: 28px;
+  font-weight: 650;
+  color: #1E2A44;
+  margin: 0;
+  line-height: 1.3;
+}
+
+.page-desc {
+  font-size: 15px;
+  color: #6B7280;
+  margin: 4px 0 0 0;
+}
+
+/* Empty state. */
+.empty {
+  text-align: center;
+  padding: 48px 24px;
+  border: 1px dashed #E5E7EB;
+  border-radius: 10px;
+  background: #FFFFFF;
+  color: #6B7280;
+}
+
+.empty svg {
+  stroke: #9AA4BF;
+  fill: none;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  margin-bottom: 12px;
+}
+
+.empty p {
+  margin: 4px 0 0 0;
+  font-size: 15px;
+}
+
+.empty .empty-sub {
+  font-size: 13px;
+  color: #9AA4BF;
+}
+
+/* Finding cards. */
+.finding-head {
+  font-weight: 600;
+  color: #1E2A44;
+  font-size: 15px;
+  margin: 0;
+}
+
+.finding-reason {
+  font-size: 14px;
+  color: #1F2937;
+  line-height: 1.6;
+  margin: 8px 0;
+}
+
+.finding-excerpt {
+  border-left: 3px solid #6B7280;
+  background: #F7F8FA;
+  border-radius: 0 8px 8px 0;
+  padding: 10px 12px;
+  font-size: 14px;
+  color: #1F2937;
+  font-style: normal;
+  white-space: pre-wrap;
+  margin: 8px 0;
+}
+
+/* Buttons: navy primary, slightly lighter on hover, gold focus ring. */
+button[kind="primary"],
+[data-testid="stBaseButton-primary"] {
+  background-color: #1E2A44 !important;
+  border-color: #1E2A44 !important;
+  color: #FFFFFF !important;
+}
+
+button[kind="primary"]:hover,
+[data-testid="stBaseButton-primary"]:hover {
+  background-color: #2A3A5E !important;
+  border-color: #2A3A5E !important;
+}
+
+button:focus-visible,
+a:focus-visible,
+[role="button"]:focus-visible {
+  outline: 2px solid #B8963E !important;
+  outline-offset: 2px;
+}
+
+/* Respect users who prefer less motion. */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Institution band on the Dashboard: EU Global's white artwork needs its navy tile,
+   Docenti's dark artwork sits on white. Equal tile heights keep the pair balanced. */
+.institution-band {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  padding: 12px 16px;
+  margin-bottom: 24px;
+  background: #FFFFFF;
+  border: 1px solid #E5E7EB;
+  border-radius: 10px;
+  box-shadow: 0 1px 2px rgba(16, 24, 40, 0.06);
+}
+.institution-tile {
+  height: 64px;
+  display: flex;
+  align-items: center;
+  padding: 8px 12px;
+  border-radius: 8px;
+}
+.institution-tile--dark { background: #1E2A44; }
+.institution-tile img { height: 100%; width: auto; display: block; }
+.institution-caption {
+  flex: 1 1 220px;
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.5;
+  color: #6B7280;
+  text-align: right;
+}
+@media (max-width: 900px) {
+  .institution-caption { text-align: left; }
+}
+
+/* Version comparison: side-by-side clause rows, tinted by change type. */
+.diff-row {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+.diff-cell {
+  flex: 1;
+  min-width: 0;
+  background: #FFFFFF;
+  border: 1px solid #E5E7EB;
+  border-radius: 8px;
+  padding: 10px 12px;
+  font-size: 13px;
+  line-height: 1.6;
+  color: #1F2937;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+.diff-added {
+  background: #EAF6EF;
+  border-color: #1E8449;
+}
+.diff-removed {
+  background: #FBEDEC;
+  border-color: #C0392B;
+}
+.diff-changed {
+  background: #FDF6E7;
+  border-color: #D68910;
+}
+ins.diff-ins {
+  text-decoration: none;
+  background: rgba(30, 132, 73, 0.18);
+  border-bottom: 2px solid #1E8449;
+  border-radius: 2px;
+  padding: 0 1px;
+}
+del.diff-del {
+  text-decoration: line-through;
+  background: rgba(192, 57, 43, 0.15);
+  border-radius: 2px;
+  padding: 0 1px;
+}
+
+/* Keep content clear of Streamlit's top bar so the institution band is never clipped. */
+[data-testid="stMainBlockContainer"] { padding-top: 4rem !important; }

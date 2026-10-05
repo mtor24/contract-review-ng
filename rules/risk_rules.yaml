@@ -1,0 +1,216 @@
+# Risk-analysis rules - EDITABLE BY NON-PROGRAMMERS
+#
+# HOW THIS FILE WORKS
+# Each rule below checks a contract for one specific legal risk and
+# produces a "finding" (a warning shown to the reviewer). Rules are
+# checked one by one against the whole contract. Every rule has:
+#   id:       a unique short name (snake_case) - never change existing ids.
+#   name:     human-readable title shown in the report.
+#   severity: High, Medium or Low.
+#   reason:   plain-English explanation a lawyer would accept.
+#   type:     which checking engine runs the rule (see below).
+#
+# RULE TYPES
+#   pattern:            Flag any sentence matching one of the "patterns"
+#                       regexes. Optional "labels" restricts to clauses
+#                       with those classification labels.
+#   pattern_without:    Flag a matching sentence only when none of the
+#                       "unless" regexes match the SAME clause.
+#   label_absent:       Flag when NO clause has the given "label".
+#   label_without:      Flag when clauses with "label" exist but none
+#                       matches any "must_match" regex.
+#   text_without_label: Flag when "patterns" occur anywhere in the text
+#                       but NO clause has "label".
+#   rate_threshold:     Flag sentences where an interest rate exceeds
+#                       per_month_max or per_annum_max.
+#   party_balance:      Flag one-sided rights. Scans ALL sentences in
+#                       clauses with "labels" for the "verb" regex and
+#                       collects the subject before the verb. No finding
+#                       when a "mutual" regex matches any such sentence
+#                       or no subject is found. One distinct subject:
+#                       flag. Several subjects where one may act
+#                       "without notice" and another must give notice:
+#                       flag (meaningful for termination only).
+#
+# OPTIONAL KEYS
+#   once: true          Keep only the FIRST finding of that rule for the
+#                       whole document (use when repeats add no value).
+#   exclude:            For pattern rules: regexes that stop a sentence
+#                       being flagged even though a pattern matches it
+#                       (use for negations like "Neither party may ...").
+#   reason_one_subject: Sentence template for party_balance findings when
+#                       only one party holds the right. {subject} is
+#                       replaced with the party name (e.g. "the Lender").
+#
+# HOW TO EDIT
+# - All regexes are case-insensitive.
+# - Use plain ASCII only (no fancy quotes or dashes).
+# - Add a new rule by copying an existing block and giving it a new
+#   unique id. The order of rules does not matter.
+# - Keep "reason" to one or two sentences a lawyer would accept.
+# - severity must be exactly High, Medium or Low.
+
+rules:
+  - id: uncapped_liability
+    name: "Uncapped Liability"
+    severity: High
+    type: pattern_without
+    once: true
+    reason: >-
+      The liability of one or both parties is unlimited or uncapped.
+      Nigerian courts expect liability to be capped at a reasonable sum.
+    # "without limit(?!ation)" so the idiom "including without limitation"
+    # is not read as uncapped liability.
+    patterns:
+      - "liability.*(unlimited|uncapped|without limit(?!ation))"
+    # A clause that states a cap is not uncapped. "(?<!not )limited to"
+    # ignores "including but not limited to", which is not a cap.
+    unless:
+      - "shall not exceed"
+      - "shall in no event exceed"
+      - "capped at"
+      - "(?<!not )limited to"
+
+  - id: one_sided_indemnity
+    name: "One-Sided Indemnity"
+    severity: Medium
+    type: party_balance
+    reason: >-
+      Only one party carries the indemnity, which is one-sided.
+      A fair contract usually makes indemnities mutual.
+    reason_one_subject: "Only the {subject} gives an indemnity. Consider a mutual indemnity."
+    labels:
+      - indemnity
+    verb: '(?:shall|will|agrees to|undertakes to)\s+indemnify'
+    mutual:
+      - "either party"
+      - "each party"
+      - "both parties"
+      - "indemnify each other"
+      - "mutual"
+
+  - id: termination_without_notice
+    name: "Termination Without Notice"
+    severity: High
+    type: pattern
+    reason: >-
+      A party may terminate without giving notice. Nigerian courts
+      expect reasonable notice before termination.
+    patterns:
+      - "terminat\\w*[^.]*without (any |prior )?notice"
+    # A prohibition is not a right: "Neither party may terminate ... without
+    # notice" and "The Employer shall not terminate ..." protect the parties.
+    exclude:
+      - '\b(neither|no) party\s+(may|shall|will|can)\s+terminat'
+      - '\b(may|shall|will|must|can)\s+not\s+terminat'
+      - '\bcannot\s+terminat'
+
+  - id: one_sided_termination
+    name: "One-Sided Termination"
+    severity: Medium
+    type: party_balance
+    reason: >-
+      Only one party has the right to terminate, or one party may
+      terminate without notice while the other must give notice.
+      Termination rights should be balanced.
+    reason_one_subject: "Only the {subject} has a right to terminate. Termination rights should normally be available to both parties."
+    labels:
+      - termination
+    verb: "may terminate"
+    mutual:
+      - "either party"
+      - "each party"
+      - "both parties"
+      - "mutual"
+
+  - id: auto_renewal_no_notice
+    name: "Auto-Renewal Without Notice"
+    severity: Medium
+    type: pattern_without
+    reason: >-
+      The contract renews automatically but does not require notice
+      before renewal. Parties should be told before they are locked in.
+    patterns:
+      - "automatic(ally)? renew"
+    unless:
+      - "notice"
+
+  - id: foreign_governing_law
+    name: "Foreign Governing Law"
+    severity: High
+    type: label_without
+    reason: >-
+      The governing law is not Nigerian law. For a contract performed
+      in Nigeria, foreign governing law creates enforcement problems.
+    label: governing_law
+    must_match:
+      - "nigeria"
+
+  - id: no_governing_law
+    name: "No Governing Law"
+    severity: High
+    type: label_absent
+    reason: >-
+      No governing law clause was found. The contract must say which
+      country's law interprets it.
+    label: governing_law
+
+  - id: foreign_arbitration
+    name: "Foreign Arbitration"
+    severity: High
+    type: pattern
+    once: true
+    reason: >-
+      Disputes are to be resolved by foreign arbitration or seated
+      abroad. Nigerian parties may find this costly and hard to enforce.
+    labels:
+      - dispute_resolution
+    patterns:
+      - "(seat|seated|venue)[^.]*(london|paris|singapore|geneva|dubai|new york|hong kong|stockholm)"
+      - "\\blcia\\b"
+      - "\\bicc\\b"
+      - "international chamber of commerce"
+
+  - id: no_dispute_resolution
+    name: "No Dispute Resolution"
+    severity: Medium
+    type: label_absent
+    reason: >-
+      No dispute resolution clause was found. The parties need an
+      agreed route for resolving disputes.
+    label: dispute_resolution
+
+  - id: missing_data_protection
+    name: "Missing Data Protection"
+    severity: High
+    type: text_without_label
+    reason: >-
+      The contract handles personal data but has no data protection
+      clause. The Nigeria Data Protection Act 2023 requires safeguards.
+    patterns:
+      - "personal data"
+      - "phone numbers"
+      - "customer (data|information|records)"
+    label: data_protection
+
+  - id: high_interest
+    name: "High Interest Rate"
+    severity: High
+    type: rate_threshold
+    reason: >-
+      The interest rate found is above the threshold. Nigerian courts
+      may refuse to enforce interest that is excessive or penal.
+    per_month_max: 2
+    per_annum_max: 36
+
+  - id: penalty_clause
+    name: "Penalty Clause"
+    severity: Medium
+    type: pattern
+    once: true
+    reason: >-
+      Nigerian courts may refuse to enforce a sum that is a penalty
+      rather than a genuine pre-estimate of loss.
+    patterns:
+      - "\\bpenalty\\b"
+      - "\\bpenalties\\b"

@@ -1,0 +1,146 @@
+SERVICE LEVEL AGREEMENT
+
+This Agreement is made on the 25th day of October 2026.
+
+BETWEEN:
+
+(1) FEDERAL CAPITAL TECHNOLOGIES LIMITED, a company incorporated in Nigeria with RC Number 1552891, having its registered office at 30 Jimmy Carter Street, Asokoro, Abuja (hereinafter referred to as "the Provider"); and
+
+(2) BLUEGATE RETAIL GROUP LIMITED, a company incorporated in Nigeria with RC Number 1677119, having its registered office at 55 Allen Avenue, Ikeja, Lagos (hereinafter referred to as "the Client").
+
+WHEREAS the Provider carries on the business of providing managed information technology services and the Client wishes to engage the Provider to provide such services on the terms of this Agreement.
+
+NOW IT IS HEREBY AGREED as follows:
+
+1. SERVICES
+
+1.1 The Provider shall provide managed information technology services to the Client, comprising network monitoring, server administration, helpdesk support, data backup and cybersecurity management (hereinafter referred to as "the Services").
+
+1.2 The Services shall be provided in respect of the Client's head office at 55 Allen Avenue, Ikeja, Lagos and its branch offices listed in Schedule 1.
+
+1.3 The Provider agrees to perform the Services with reasonable skill and care and in accordance with good industry practice.
+
+1.4 The Provider shall assign a dedicated account manager to the Client within 14 days of the commencement date.
+
+2. SERVICE LEVELS
+
+2.1 The Provider shall ensure that the Client's core systems achieve a monthly availability of not less than 99.5% in each calendar month.
+
+2.2 The Provider shall respond to support requests in accordance with the following priority levels:
+
+2.3 Priority 1 (critical system failure): response within 1 hour and resolution within 4 hours.
+
+2.4 Priority 2 (major degradation): response within 4 hours and resolution within 24 hours.
+
+2.5 Priority 3 (minor fault): response within 8 hours and resolution within 72 hours.
+
+2.6 Priority 4 (general enquiry): response within 24 hours.
+
+2.7 The Provider must provide the Client with a monthly service report within 7 days of the end of each calendar month.
+
+3. SERVICE CREDITS
+
+3.1 If monthly availability falls below 99.5% but is at least 99.0%, the Client shall be entitled to a service credit equal to 5% of the monthly fee.
+
+3.2 If monthly availability falls below 99.0% but is at least 98.0%, the Client shall be entitled to a service credit equal to 10% of the monthly fee.
+
+3.3 If monthly availability falls below 98.0%, the Client shall be entitled to a service credit equal to 25% of the monthly fee.
+
+3.4 Service credits shall be applied against the next invoice and shall be the Client's primary financial remedy for service level failures.
+
+4. FEES AND PAYMENT
+
+4.1 The Client shall pay the Provider a monthly fee of N3,500,000 (Three Million Five Hundred Thousand Naira), payable in advance on the first day of each month.
+
+4.2 The Client must pay each invoice within 14 days of the invoice date.
+
+4.3 The Provider may review the fees once in each contract year, subject to giving the Client at least 60 days prior written notice.
+
+5. DATA PROTECTION
+
+5.1 Each party shall comply with its obligations under the Nigeria Data Protection Act 2023 in respect of any personal data processed in connection with this Agreement.
+
+5.2 The Provider shall process personal data only on the documented instructions of the Client and shall implement appropriate technical and organisational measures to protect such data.
+
+5.3 The Provider must notify the Client of any personal data breach within 48 hours of becoming aware of it.
+
+5.4 The Provider shall not transfer personal data outside Nigeria without the prior written consent of the Client.
+
+6. CONFIDENTIALITY
+
+6.1 Each party shall keep confidential all information of a confidential nature obtained from the other party in connection with this Agreement and shall not disclose it to any third party without prior written consent.
+
+6.2 The obligations in this clause shall survive termination of this Agreement for a period of five (5) years.
+
+7. LIMITATION OF LIABILITY
+
+7.1 Subject to clause 7.2, the total aggregate liability of each party under this Agreement shall not exceed the total fees paid by the Client in the preceding twelve (12) months.
+
+7.2 Nothing in this Agreement shall exclude or limit either party's liability for death or personal injury caused by its negligence, or for fraud.
+
+8. INDEMNITIES
+
+8.1 The Provider shall indemnify the Client against all claims, losses and expenses arising from the Provider's negligence, wilful misconduct or breach of clause 5.
+
+8.2 The Client shall indemnify the Provider against all claims, losses and expenses arising from the Client's negligence, wilful misconduct or misuse of the Services.
+
+8.3 Each party must notify the other of any indemnified claim within 14 days of becoming aware of it.
+
+9. FORCE MAJEURE
+
+9.1 Neither party shall be liable for any failure to perform its obligations caused by events beyond its reasonable control, including flood, fire, epidemic, war, civil unrest or prolonged power failure not attributable to the Provider.
+
+9.2 The affected party shall notify the other party within 7 days of the force majeure event and shall use reasonable endeavours to mitigate its effects.
+
+10. TERM AND TERMINATION
+
+10.1 This Agreement shall commence on 1 November 2026 and shall continue for an initial term of two (2) years unless terminated earlier in accordance with this clause.
+
+10.2 Either party may terminate this Agreement on thirty (30) days' written notice to the other party.
+
+10.3 Either party may terminate immediately by written notice if the other party commits a material breach and fails to remedy it within 14 days of written notice.
+
+10.4 Upon termination, the Provider must return all Client data and documentation within 30 days of the effective date of termination.
+
+11. NOTICES
+
+11.1 Any notice under this Agreement shall be in writing and delivered by hand, registered post or email to the addresses stated above or such other address as may be notified.
+
+11.2 A notice sent by registered post shall be deemed served within 7 days of posting; a notice sent by email shall be deemed served on the date of transmission if no delivery failure notification is received.
+
+12. ASSIGNMENT
+
+12.1 Neither party may assign or transfer its rights or obligations under this Agreement without the prior written consent of the other party, such consent not to be unreasonably withheld.
+
+13. GOVERNING LAW
+
+13.1 This Agreement shall be governed by and construed in accordance with the laws of the Federal Republic of Nigeria.
+
+14. DISPUTE RESOLUTION
+
+14.1 The parties shall first attempt to resolve any dispute amicably through good faith negotiation between senior executives within 30 days of written notice of the dispute.
+
+14.2 Failing amicable resolution, the dispute shall be referred to arbitration by a sole arbitrator, with the seat of arbitration in Lagos, conducted in accordance with the Arbitration and Mediation Act 2023.
+
+IN WITNESS WHEREOF the parties have executed this Agreement the day and year first above written.
+
+SIGNED for and on behalf of
+FEDERAL CAPITAL TECHNOLOGIES LIMITED
+
+Name: Nnamdi Obiora Eze
+Designation: Chief Executive Officer
+Signature: ____________________
+Date: ____________________
+
+SIGNED for and on behalf of
+BLUEGATE RETAIL GROUP LIMITED
+
+Name: Olayemi Adebanjo
+Designation: Finance Director
+Signature: ____________________
+Date: ____________________
+
+In the presence of:
+Witness Name: Blessing Etim
+Witness Address: 10 Port Harcourt Crescent, Area 11, Garki, Abuja
+Witness Signature: ____________________

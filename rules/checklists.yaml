@@ -1,0 +1,176 @@
+# Contract-type checklists - EDITABLE BY NON-PROGRAMMERS
+#
+# HOW THIS FILE WORKS
+# "contract_types" lists every contract type the system can auto-detect.
+# For each type:
+#   name:            human-readable label shown in the UI.
+#   detect_keywords: lower-case phrases that suggest this type when found
+#                    in the document text. A match in the first few lines
+#                    (the title) counts much more than a match in the body,
+#                    so put the words of the document title here first.
+#   expected_clauses: label ids from rules/clause_patterns.yaml that a
+#                    complete contract of this type should contain. When a
+#                    clause is missing, the reviewer sees a finding whose
+#                    reason comes from "why_expected" below.
+#
+# HOW TO EDIT
+# - Keep keywords lower-case; matching is case-insensitive.
+# - Use plain ASCII only (no fancy quotes or dashes).
+# - Add a new contract type by copying an existing block and giving it a
+#   new unique id (snake_case). Only use label ids that exist in
+#   rules/clause_patterns.yaml under expected_clauses.
+# - "why_expected" holds one plain-English sentence per clause label,
+#   explaining why a lawyer expects that clause. It is shared by all types.
+
+contract_types:
+  employment:
+    name: "Employment Agreement"
+    detect_keywords:
+      - "employment agreement"
+      - "employment"
+      - "employee"
+      - "employer"
+      - "salary"
+      - "duties"
+    expected_clauses:
+      - parties
+      - term
+      - payment
+      - termination
+      - confidentiality
+      - governing_law
+      - dispute_resolution
+      - data_protection
+
+  supply:
+    name: "Commercial / Supply Agreement"
+    detect_keywords:
+      - "supply agreement"
+      - "supply"
+      - "supplier"
+      - "purchase order"
+      - "consignment"
+      - "delivery"
+      - "goods"
+    expected_clauses:
+      - parties
+      - term
+      - payment
+      - termination
+      - indemnity
+      - limitation_of_liability
+      - governing_law
+      - dispute_resolution
+      - force_majeure
+      - notices
+
+  lease:
+    name: "Lease / Tenancy Agreement"
+    detect_keywords:
+      - "lease agreement"
+      - "lease"
+      - "tenancy"
+      - "landlord"
+      - "tenant"
+      - "premises"
+      - "rent"
+    expected_clauses:
+      - parties
+      - term
+      - rent
+      - termination
+      - governing_law
+      - dispute_resolution
+      - notices
+      - assignment
+
+  nda:
+    name: "Non-Disclosure Agreement"
+    detect_keywords:
+      - "non-disclosure agreement"
+      - "non-disclosure"
+      - "confidentiality agreement"
+      - "confidential information"
+      - "disclosing party"
+      - "receiving party"
+    expected_clauses:
+      - parties
+      - confidentiality
+      - term
+      - termination
+      - governing_law
+      - dispute_resolution
+      - data_protection
+
+  partnership:
+    name: "Partnership Agreement"
+    detect_keywords:
+      - "partnership agreement"
+      - "partnership"
+      - "partner"
+      - "partners"
+      - "firm"
+      - "profit sharing"
+    expected_clauses:
+      - parties
+      - payment
+      - termination
+      - confidentiality
+      - governing_law
+      - dispute_resolution
+
+  sla:
+    name: "Service Level Agreement"
+    detect_keywords:
+      - "service level agreement"
+      - "service level"
+      - "service levels"
+      - "uptime"
+      - "availability"
+      - "service credits"
+    expected_clauses:
+      - parties
+      - term
+      - service_levels
+      - payment
+      - termination
+      - limitation_of_liability
+      - data_protection
+      - governing_law
+      - dispute_resolution
+
+  loan:
+    name: "Loan Agreement"
+    detect_keywords:
+      - "loan agreement"
+      - "loan"
+      - "facility"
+      - "lender"
+      - "borrower"
+      - "repayment"
+      - "interest"
+    expected_clauses:
+      - parties
+      - repayment
+      - termination
+      - governing_law
+      - dispute_resolution
+      - notices
+
+why_expected:
+  parties: "A contract must identify who is bound by it, otherwise it cannot be enforced."
+  term: "The parties must know when the agreement starts and ends."
+  payment: "Money terms are the heart of a commercial bargain and must be certain."
+  termination: "Without exit rights the parties may be locked in indefinitely."
+  confidentiality: "Business information shared under the deal needs protection."
+  governing_law: "The contract must say which country's law interprets it."
+  dispute_resolution: "The parties need an agreed route for resolving disputes."
+  data_protection: "The Nigeria Data Protection Act 2023 requires safeguards for personal data."
+  indemnity: "Risk of third-party claims must be allocated between the parties."
+  limitation_of_liability: "Liability caps define each party's maximum exposure."
+  force_majeure: "Parties need relief when events beyond their control stop performance."
+  notices: "Formal communications need agreed addresses and delivery rules."
+  rent: "A lease is void for uncertainty without a stated rent."
+  assignment: "The parties must know whether their rights can be transferred."
+  repayment: "A loan must state how and when the money is repaid."
+  service_levels: "A service agreement is toothless without measurable performance standards."

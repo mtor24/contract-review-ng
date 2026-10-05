@@ -1,0 +1,12 @@
+# LexReview NG default settings. Changes made on the Settings page are saved to
+# data/local_config.yaml (not shared on GitHub) and take priority over this file.
+
+# Your firm's name. Shown on reports and in the header of printed output.
+firm_name: "Your Firm Name"
+
+features:
+  # Optional TF-IDF fallback for clauses the rules cannot label.
+  # Off by default. It still runs entirely on this computer.
+  tfidf_fallback: false
+  # Ask for a password when the app opens. Set the password on the Settings page first.
+  login_enabled: false

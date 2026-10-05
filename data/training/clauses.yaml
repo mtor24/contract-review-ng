@@ -1,0 +1,439 @@
+# Training data for the OPTIONAL TF-IDF clause classifier (core/tfidf.py).
+#
+# WHAT THIS FILE IS
+# When the rule-based classifier labels a clause "other", an optional
+# statistical model (TF-IDF + logistic regression) may suggest a label
+# instead. This file is its entire training set. Every example below is
+# SYNTHETIC: written for this project, not copied from any real client
+# contract. The model is trained in memory at first use; nothing is
+# saved to disk.
+#
+# HOW LAWYERS CAN IMPROVE THE FALLBACK
+# The more realistic examples each label has, the better the suggestions.
+# To add examples, copy the "- label: ... / text: ..." format below:
+#   - label must be one of the 19 label ids in rules/clause_patterns.yaml.
+#   - text should be one or two short sentences written the way such a
+#     clause actually appears in a Nigerian contract.
+#   - Use plain ASCII only (no fancy quotes, no Naira sign).
+#   - Never paste real client text here; keep examples generic.
+# A paragraph of varied wording helps more than near-duplicates of the
+# same sentence.
+
+examples:
+  # --- parties -------------------------------------------------------------
+  - label: parties
+    text: "This Agreement is made between Lagos Trading Ventures Limited, a company incorporated in Nigeria with RC Number 123456, and Kano Distribution Company Limited of the other part."
+  - label: parties
+    text: "Between Chief Adewale Okonkwo of 12 Bourdillon Road, Ikoyi, Lagos (hereinafter referred to as the Landlord) and Mrs Funke Adeleke (hereinafter referred to as the Tenant)."
+  - label: parties
+    text: "The parties to this Agreement are Zenith Agro Allied Limited, having its registered office at 4 Ibrahim Taiwo Road, Ilorin, and Ogun Commodities Plc."
+  - label: parties
+    text: "This Partnership is entered into by Alhaji Musa Danladi and Engineer Chukwuemeka Nwosu, carrying on business together in Port Harcourt."
+  - label: parties
+    text: "Between a company incorporated in Nigeria with its principal place of business at 23 Adeola Odeku Street, Victoria Island, of the one part, and the Client of the other part."
+  - label: parties
+    text: "The Borrower is Nneka Enterprises Limited, a private company limited by shares with RC Number 998877, and the Lender is First Meridian Microfinance Bank Limited."
+  - label: parties
+    text: "This Deed is made between the partners named in the Schedule hereto, their successors in title and permitted assigns."
+  - label: parties
+    text: "Between Halima Bello trading under the name and style of HB Consultancy (the Consultant) and Rivers State Logistics Limited (the Company)."
+  - label: parties
+    text: "The Employer is Cedar Heights Academy, having its registered office at 8 Awolowo Road, Ikoyi, Lagos, and the Employee is Mr Tunde Bakare."
+  - label: parties
+    text: "This Agreement is between Abuja Cloud Services Limited, a company incorporated in Nigeria, and its successors in title, and the Subscriber."
+
+  # --- definitions ---------------------------------------------------------
+  - label: definitions
+    text: "In this Agreement, unless the context otherwise requires, the following terms shall have the meanings set out below."
+  - label: definitions
+    text: "\"Commencement Date\" means the date on which this Agreement comes into force."
+  - label: definitions
+    text: "In this Agreement, \"Confidential Information\" shall mean all information disclosed by one party to the other, whether in writing or orally."
+  - label: definitions
+    text: "\"Services\" means the consultancy services described in Schedule 1, as defined and amended from time to time."
+  - label: definitions
+    text: "For the purposes of this Agreement, \"Business Day\" shall mean any day other than a Saturday, Sunday or public holiday in Nigeria."
+  - label: definitions
+    text: "The following terms, when used in this Agreement, shall have the meaning ascribed to them in this Clause 1."
+  - label: definitions
+    text: "\"Force Majeure Event\" means any event beyond the reasonable control of the affected party, as defined in Clause 14."
+  - label: definitions
+    text: "Unless the context otherwise requires, words importing the singular include the plural and vice versa."
+  - label: definitions
+    text: "Each of the following expressions shall have the meaning set opposite it: Agreement, Deliverables, Fees, Term."
+  - label: definitions
+    text: "\"Intellectual Property\" means all patents, trademarks, copyright and other proprietary rights, as defined in this Agreement."
+
+  # --- term ----------------------------------------------------------------
+  - label: term
+    text: "This Agreement shall commence on the 1st day of January 2026 and shall continue for an initial term of two years."
+  - label: term
+    text: "The initial term of this Agreement shall be twelve months from the commencement date, renewable by mutual written agreement."
+  - label: term
+    text: "This lease shall continue for a period of five years certain from the commencement date."
+  - label: term
+    text: "The Agreement shall come into force on the date of execution and shall continue unless terminated in accordance with Clause 9."
+  - label: term
+    text: "Upon the expiry of the term, this Agreement may be renewed for a further renewal period of one year on the same terms."
+  - label: term
+    text: "The employment shall commence on the 15th day of March 2026 and shall continue unless and until determined by either party."
+  - label: term
+    text: "The term of the partnership shall commence on the date of this Deed and continue until dissolved in accordance with its provisions."
+  - label: term
+    text: "This Agreement shall remain in force for an initial term of three years and thereafter from year to year."
+  - label: term
+    text: "The facility shall be available for drawdown for a period of six months from the date of this Agreement."
+  - label: term
+    text: "The term of this Agreement shall automatically renew for successive renewal periods of twelve months unless either party gives notice."
+
+  # --- payment -------------------------------------------------------------
+  - label: payment
+    text: "The Client shall pay the Consultant a monthly fee of N2,500,000, payable in arrears within 14 days of invoice."
+  - label: payment
+    text: "The Buyer shall pay each invoice within thirty days of receipt, into the Supplier's designated bank account."
+  - label: payment
+    text: "The contract value shall be N45,000,000, payable in three equal instalments upon achievement of the milestones."
+  - label: payment
+    text: "The Employee shall be paid a monthly salary of N850,000, subject to statutory deductions, in arrears on the last working day of each month."
+  - label: payment
+    text: "The unit price for the Products shall be as set out in Schedule 2 and may be reviewed annually by agreement of the parties."
+  - label: payment
+    text: "Late payment shall attract interest at the rate of 21 per cent per annum from the due date until payment in full."
+  - label: payment
+    text: "Each partner shall make an initial capital contribution of N10,000,000 to the capital of the firm within 30 days of this Deed."
+  - label: payment
+    text: "The net profits of the partnership shall be distributed among the partners in proportion to their profit-sharing ratios."
+  - label: payment
+    text: "All fees payable under this Agreement are exclusive of value added tax, which shall be paid at the prevailing rate."
+  - label: payment
+    text: "The Supplier shall submit invoices monthly, and each invoice shall be payable within 21 days of the date of the invoice."
+
+  # --- termination ---------------------------------------------------------
+  - label: termination
+    text: "Either party may terminate this Agreement by giving the other party ninety days' written notice."
+  - label: termination
+    text: "The Company may terminate this Agreement forthwith if the Contractor commits a material breach which is not remedied within 14 days of notice."
+  - label: termination
+    text: "Upon termination of this Agreement, each party shall return all property belonging to the other party."
+  - label: termination
+    text: "This Agreement may be terminated by the Employer without notice in the event of gross misconduct by the Employee."
+  - label: termination
+    text: "The partnership shall be dissolved upon the death or bankruptcy of any partner, unless the remaining partners agree otherwise."
+  - label: termination
+    text: "Upon the effective date of termination, all outstanding fees shall become immediately due and payable."
+  - label: termination
+    text: "A partner may retire from the firm by giving not less than six months' written notice to the other partners."
+  - label: termination
+    text: "The Lender may terminate the facility and demand immediate repayment upon the occurrence of an event of default."
+  - label: termination
+    text: "Any partner may be expelled by a resolution of partners holding at least 75 per cent of the capital, in accordance with this Deed."
+  - label: termination
+    text: "Upon dissolution, the partners shall wind up the affairs of the firm and distribute the surplus in accordance with Clause 18."
+
+  # --- confidentiality -----------------------------------------------------
+  - label: confidentiality
+    text: "The Recipient shall keep all Confidential Information strictly confidential and shall not disclose it to any third party."
+  - label: confidentiality
+    text: "Each party undertakes to protect the confidential nature of the information disclosed to it under this Agreement."
+  - label: confidentiality
+    text: "The Employee shall not, during or after employment, disclose any trade secrets or confidential information of the Employer."
+  - label: confidentiality
+    text: "The obligations of confidence under this Clause shall survive the termination of this Agreement for a period of five years."
+  - label: confidentiality
+    text: "Upon request, the Recipient shall return or destroy all documents containing Confidential Information within 14 days."
+  - label: confidentiality
+    text: "Neither party shall use the Confidential Information for any purpose other than the performance of this Agreement."
+  - label: confidentiality
+    text: "The Consultant shall not disclose the Client's business plans, customer lists or pricing to any third party without written consent."
+  - label: confidentiality
+    text: "Access to Confidential Information shall be restricted to employees who need to know it for the purposes of this Agreement."
+  - label: confidentiality
+    text: "The parties acknowledge that unauthorised use or disclosure of Confidential Information may cause irreparable harm."
+  - label: confidentiality
+    text: "This non-disclosure obligation shall not apply to information already in the public domain other than through breach of this Agreement."
+
+  # --- indemnity -----------------------------------------------------------
+  - label: indemnity
+    text: "The Contractor shall indemnify and hold harmless the Client against all claims arising from the Contractor's negligence."
+  - label: indemnity
+    text: "The Supplier shall indemnify the Buyer against all losses, damages and expenses arising from defective Products."
+  - label: indemnity
+    text: "Each party shall indemnify the other against all claims brought by third parties arising from its breach of this Agreement."
+  - label: indemnity
+    text: "The Tenant shall indemnify the Landlord against all losses arising from the Tenant's use of the demised premises."
+  - label: indemnity
+    text: "The indemnity under this Clause shall survive the termination or expiry of this Agreement."
+  - label: indemnity
+    text: "The Borrower shall indemnify the Lender against all costs incurred in enforcing its rights under this Agreement."
+  - label: indemnity
+    text: "In the event of an indemnified claim, the indemnified party shall give prompt written notice to the indemnifying party."
+  - label: indemnity
+    text: "The Recipient agrees to indemnify the Discloser against all losses arising from any unauthorised disclosure of Confidential Information."
+  - label: indemnity
+    text: "The Service Provider shall indemnify and hold harmless the Client against all claims arising from infringement of intellectual property rights."
+  - label: indemnity
+    text: "The indemnifying party shall have the right to assume the defence of any indemnified claim at its own expense."
+
+  # --- limitation_of_liability ---------------------------------------------
+  - label: limitation_of_liability
+    text: "The total liability of the Supplier under this Agreement shall not exceed the fees paid in the twelve months preceding the claim."
+  - label: limitation_of_liability
+    text: "Neither party shall be liable for any indirect or consequential loss, including loss of profit, arising under this Agreement."
+  - label: limitation_of_liability
+    text: "The aggregate liability of the Service Provider shall not exceed the contract value."
+  - label: limitation_of_liability
+    text: "Nothing in this Agreement shall exclude or limit either party's liability for death or personal injury caused by negligence."
+  - label: limitation_of_liability
+    text: "The Supplier's total liability for all claims in any contract year shall not exceed N20,000,000."
+  - label: limitation_of_liability
+    text: "In no event shall either party be liable for any loss of profit, loss of revenue or indirect loss howsoever arising."
+  - label: limitation_of_liability
+    text: "The limitations in this Clause shall apply to the fullest extent permitted by applicable law."
+  - label: limitation_of_liability
+    text: "The Consultant's aggregate liability arising out of or in connection with this engagement shall not exceed the fees actually paid."
+  - label: limitation_of_liability
+    text: "Neither party shall be liable for any consequential loss, loss of goodwill or loss of anticipated savings."
+  - label: limitation_of_liability
+    text: "The liability of the Landlord under this lease shall not exceed the annual rent payable by the Tenant."
+
+  # --- governing_law -------------------------------------------------------
+  - label: governing_law
+    text: "This Agreement shall be governed by and construed in accordance with the laws of the Federal Republic of Nigeria."
+  - label: governing_law
+    text: "This Deed and any dispute arising from it shall be governed by the laws of Lagos State."
+  - label: governing_law
+    text: "The governing law of this Agreement shall be the law of the Federal Republic of Nigeria."
+  - label: governing_law
+    text: "This Agreement shall be governed by the laws in force in the Federal Republic of Nigeria, without regard to conflict of laws principles."
+  - label: governing_law
+    text: "The rights and obligations of the parties shall be construed in accordance with the laws of Nigeria."
+  - label: governing_law
+    text: "This lease shall be governed by and interpreted in accordance with the laws of Rivers State of Nigeria."
+  - label: governing_law
+    text: "The parties agree that this Agreement and the relationship between them shall be governed by Nigerian law."
+  - label: governing_law
+    text: "The applicable law for all matters arising under this Agreement shall be the law of the Federal Republic of Nigeria."
+  - label: governing_law
+    text: "This Agreement is made under and shall be governed by the laws of the Federal Capital Territory, Abuja."
+  - label: governing_law
+    text: "All questions concerning the validity and performance of this Agreement shall be governed by the laws of Nigeria."
+
+  # --- dispute_resolution --------------------------------------------------
+  - label: dispute_resolution
+    text: "Any dispute arising out of this Agreement shall be referred to arbitration by a sole arbitrator in accordance with the Arbitration and Mediation Act 2023."
+  - label: dispute_resolution
+    text: "The parties shall first attempt to resolve any dispute amicably through good faith negotiations within 30 days."
+  - label: dispute_resolution
+    text: "The seat of arbitration shall be Lagos, Nigeria, and the arbitral tribunal shall consist of three arbitrators."
+  - label: dispute_resolution
+    text: "Any dispute which cannot be resolved by mediation shall be finally settled by arbitration under the rules of the Lagos Court of Arbitration."
+  - label: dispute_resolution
+    text: "The parties submit to the exclusive jurisdiction of the High Court of Lagos State in respect of any dispute arising under this Agreement."
+  - label: dispute_resolution
+    text: "Disputes shall be referred to mediation at the Lagos Court of Arbitration Mediation Centre before any court action."
+  - label: dispute_resolution
+    text: "The award of the arbitral tribunal shall be final and binding on the parties."
+  - label: dispute_resolution
+    text: "Any dispute arising between the partners shall first be referred to a sole arbitrator appointed by agreement."
+  - label: dispute_resolution
+    text: "The parties shall use their best endeavours to settle any dispute amicably before commencing arbitration proceedings."
+  - label: dispute_resolution
+    text: "The language of the arbitration shall be English and the seat of the arbitration shall be Abuja."
+
+  # --- force_majeure -------------------------------------------------------
+  - label: force_majeure
+    text: "Neither party shall be liable for any delay or failure to perform caused by a force majeure event beyond its reasonable control."
+  - label: force_majeure
+    text: "Force majeure includes acts of God, flood, epidemic, war, civil unrest and government action."
+  - label: force_majeure
+    text: "The affected party shall notify the other party in writing within 7 days of the occurrence of a force majeure event."
+  - label: force_majeure
+    text: "If the force majeure event continues for more than 90 days, either party may terminate this Agreement by written notice."
+  - label: force_majeure
+    text: "No party shall be in breach of this Agreement where performance is prevented by events beyond the reasonable control of that party."
+  - label: force_majeure
+    text: "Strikes, lockouts, flood, fire and epidemic shall constitute force majeure for the purposes of this Agreement."
+  - label: force_majeure
+    text: "During the continuance of a force majeure event, the obligations of the affected party shall be suspended."
+  - label: force_majeure
+    text: "The party relying on force majeure shall use reasonable endeavours to mitigate the effects of the event."
+  - label: force_majeure
+    text: "The obligations of the parties shall be suspended while any event of force majeure continues."
+  - label: force_majeure
+    text: "An act of God, embargo or civil unrest shall excuse timely performance for the duration of the event."
+
+  # --- data_protection -----------------------------------------------------
+  - label: data_protection
+    text: "Each party shall comply with the Nigeria Data Protection Act 2023 when processing personal data under this Agreement."
+  - label: data_protection
+    text: "The Processor shall process personal data only on the documented instructions of the Controller."
+  - label: data_protection
+    text: "Appropriate technical and organisational measures shall be implemented to protect personal data against unauthorised access."
+  - label: data_protection
+    text: "In the event of a personal data breach, the Processor shall notify the Controller without undue delay and in any event within 72 hours."
+  - label: data_protection
+    text: "The parties shall ensure that data subjects can exercise their rights under the Nigeria Data Protection Act 2023."
+  - label: data_protection
+    text: "Personal data collected under this Agreement shall not be retained longer than necessary for the purposes for which it was collected."
+  - label: data_protection
+    text: "The Provider shall not transfer personal data outside Nigeria without the prior written consent of the Client and compliance with the Act."
+  - label: data_protection
+    text: "Each data subject shall have the right of access to, and rectification of, their personal data held under this Agreement."
+  - label: data_protection
+    text: "The parties shall maintain records of all data protection processing activities carried out pursuant to this Agreement."
+  - label: data_protection
+    text: "All personal data shall be kept confidential and processed in accordance with applicable data protection legislation in Nigeria."
+
+  # --- assignment ----------------------------------------------------------
+  - label: assignment
+    text: "Neither party may assign or transfer this Agreement without the prior written consent of the other party."
+  - label: assignment
+    text: "The Supplier may assign its rights under this Agreement to an affiliate upon written notice to the Buyer."
+  - label: assignment
+    text: "No assignment of this Agreement shall be effective unless made in writing and signed by both parties."
+  - label: assignment
+    text: "The Tenant shall not assign, sublet or part with possession of the premises without the Landlord's written consent."
+  - label: assignment
+    text: "A party may assign this Agreement to a successor in title to substantially all of its business, subject to written notice."
+  - label: assignment
+    text: "The Borrower shall not assign or transfer any of its rights or obligations under this Agreement."
+  - label: assignment
+    text: "Any purported assignment in breach of this Clause shall be null and void."
+  - label: assignment
+    text: "The Client may not assign this Agreement, in whole or in part, without the prior written consent of the Consultant."
+  - label: assignment
+    text: "This Agreement shall bind and enure to the benefit of the parties and their respective permitted assigns."
+  - label: assignment
+    text: "Neither this Agreement nor any rights under it may be assigned or transferred by either party except as expressly permitted."
+
+  # --- notices -------------------------------------------------------------
+  - label: notices
+    text: "Any notice under this Agreement shall be in writing and delivered by hand or sent by registered post to the addresses stated above."
+  - label: notices
+    text: "A notice shall be deemed served on the date of transmission if sent by email before 5pm on a business day."
+  - label: notices
+    text: "Notices to the Company shall be addressed to the Company Secretary at its registered office."
+  - label: notices
+    text: "Any notice delivered by hand shall be deemed served on the next business day after delivery."
+  - label: notices
+    text: "All notices and other communications under this Agreement shall be in writing in the English language."
+  - label: notices
+    text: "A notice sent by registered post shall be deemed served seven days after posting."
+  - label: notices
+    text: "Either party may change its address for notices by giving fourteen days' written notice to the other party."
+  - label: notices
+    text: "Notices shall be addressed to the parties at the addresses set out in the Schedule or such other address as may be notified."
+  - label: notices
+    text: "No notice shall be valid unless given in accordance with this Clause."
+  - label: notices
+    text: "Any notice required under this Agreement may be given by courier, registered post or email with confirmation of receipt."
+
+  # --- intellectual_property -----------------------------------------------
+  - label: intellectual_property
+    text: "All intellectual property rights in the Deliverables shall vest in the Client upon payment in full."
+  - label: intellectual_property
+    text: "The Consultant retains all pre-existing intellectual property used in the performance of the Services."
+  - label: intellectual_property
+    text: "Nothing in this Agreement transfers any ownership of the patents, trademarks or copyright of either party."
+  - label: intellectual_property
+    text: "All inventions made by the Employee in the course of employment shall belong to the Employer."
+  - label: intellectual_property
+    text: "The Supplier warrants that the Products do not infringe the intellectual property rights of any third party."
+  - label: intellectual_property
+    text: "The source code and all proprietary rights in the software shall remain the exclusive property of the Developer."
+  - label: intellectual_property
+    text: "Each party grants the other a non-exclusive licence to use its intellectual property solely for the purposes of this Agreement."
+  - label: intellectual_property
+    text: "All copyright in reports, designs and documentation produced under this Agreement shall belong to the Client."
+  - label: intellectual_property
+    text: "The trademarks and trade names of each party shall remain its exclusive property."
+  - label: intellectual_property
+    text: "Any improvement to the intellectual property made during the term shall be disclosed and assigned to the Company."
+
+  # --- non_compete ---------------------------------------------------------
+  - label: non_compete
+    text: "The Employee shall not, for a period of twelve months after termination, directly or indirectly engage in any competing business within Nigeria."
+  - label: non_compete
+    text: "During the term of this Agreement, the Distributor shall not sell or promote products that compete with the Supplier's products."
+  - label: non_compete
+    text: "A departing partner shall not solicit or entice away any client or employee of the firm for a period of two years."
+  - label: non_compete
+    text: "The Employee shall not carry on a competing business within Lagos State for six months following the end of employment."
+  - label: non_compete
+    text: "For the duration of this Agreement and one year thereafter, the Agent shall not act for any business that competes with the Principal."
+  - label: non_compete
+    text: "The Vendor covenants not to establish a competing business within a ten-kilometre radius for three years."
+  - label: non_compete
+    text: "No partner shall, while a partner, directly or indirectly engage in any business that competes with the firm."
+  - label: non_compete
+    text: "The restraint in this Clause is considered by the parties to be reasonable and necessary to protect legitimate business interests."
+  - label: non_compete
+    text: "The Contractor shall not solicit or entice any employee of the Client to leave the Client's employment during the term."
+  - label: non_compete
+    text: "Nothing in this Clause shall prevent the Employee from holding up to 5 per cent of a listed company as a passive investment."
+
+  # --- rent ----------------------------------------------------------------
+  - label: rent
+    text: "The Tenant shall pay an annual rent of N18,000,000, payable in advance in two equal instalments."
+  - label: rent
+    text: "The rent shall be reviewed on each review date in line with prevailing market rates for comparable premises in Lagos."
+  - label: rent
+    text: "The rent for the demised premises shall be N6,500,000 per annum, exclusive of service charge."
+  - label: rent
+    text: "The rent review shall be conducted by an independent valuer appointed jointly by the Landlord and the Tenant."
+  - label: rent
+    text: "In addition to the rent, the Tenant shall pay a service charge of N1,200,000 per rental year."
+  - label: rent
+    text: "The annual rent shall be paid on or before the 1st day of January in each year of the term."
+  - label: rent
+    text: "The rent payable from the review date shall be the higher of the passing rent and the open market rent."
+  - label: rent
+    text: "Rent paid in advance shall not be refundable upon early termination of this lease."
+  - label: rent
+    text: "The Landlord may increase the rent upon giving the Tenant not less than three months' written notice."
+  - label: rent
+    text: "All rent and service charge payments shall be made into the Landlord's nominated bank account."
+
+  # --- repayment -----------------------------------------------------------
+  - label: repayment
+    text: "The Borrower shall repay the principal sum in twenty-four equal monthly instalments commencing one month after drawdown."
+  - label: repayment
+    text: "The Loan shall bear interest at the rate of 24 per cent per annum, calculated daily and payable monthly."
+  - label: repayment
+    text: "The Borrower may prepay the term loan in whole or in part upon giving thirty days' written notice to the Lender."
+  - label: repayment
+    text: "Upon the occurrence of an event of default, the Lender may declare the entire outstanding principal immediately due and payable."
+  - label: repayment
+    text: "The facility shall be secured by a legal mortgage over the Borrower's property at 15 Adetokunbo Ademola Street, Victoria Island."
+  - label: repayment
+    text: "Default interest shall accrue at 2 per cent per month on any amount not paid when due."
+  - label: repayment
+    text: "The Borrower shall deliver its audited financial statements to the Lender within 120 days of each financial year end."
+  - label: repayment
+    text: "The Borrower shall not incur additional indebtedness exceeding N50,000,000 without the Lender's prior written consent."
+  - label: repayment
+    text: "A guarantee and indemnity from the directors of the Borrower is a condition precedent to drawdown."
+  - label: repayment
+    text: "It is an event of default if the Borrower becomes insolvent, enters liquidation or a receiver is appointed over its assets."
+
+  # --- service_levels ------------------------------------------------------
+  - label: service_levels
+    text: "The Provider guarantees monthly availability of the platform of not less than 99.5 per cent, measured monthly."
+  - label: service_levels
+    text: "Priority 1 incidents shall receive a response within one hour and resolution within four hours."
+  - label: service_levels
+    text: "If the Provider fails to meet the agreed service levels, the Client shall be entitled to service credits as set out in Schedule 3."
+  - label: service_levels
+    text: "The helpdesk shall be available from 8am to 6pm on business days, with response times as set out in the service level table."
+  - label: service_levels
+    text: "Service credits shall be the sole and exclusive remedy for failure to achieve the service levels."
+  - label: service_levels
+    text: "The Provider shall measure and report uptime and response time performance monthly."
+  - label: service_levels
+    text: "Monthly availability shall exclude scheduled maintenance windows notified at least 48 hours in advance."
+  - label: service_levels
+    text: "The Supplier shall supply the Products in accordance with each purchase order and deliver within ten business days."
+  - label: service_levels
+    text: "Each consignment shall be accompanied by a quality certificate confirming compliance with the agreed specifications."
+  - label: service_levels
+    text: "The Provider shall perform such duties with reasonable skill and care and in accordance with good industry practice."

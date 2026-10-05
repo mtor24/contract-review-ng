@@ -1,0 +1,73 @@
+employment_agreement.txt:
+  contract_type: employment
+  numbering_style: decimal_dotted
+  seeded_risks:
+    - one_sided_termination
+    - termination_without_notice
+    - no_dispute_resolution
+  missing_clauses:
+    - dispute_resolution
+  compliance_gaps:
+    - no_labour_act
+    - no_ndpa
+
+supply_agreement.txt:
+  contract_type: supply
+  numbering_style: clause_heading
+  seeded_risks:
+    - uncapped_liability
+    - one_sided_indemnity
+    - auto_renewal_no_notice
+    - foreign_governing_law
+    - foreign_arbitration
+    - high_interest
+  missing_clauses:
+    - notices
+  compliance_gaps: []
+
+lease_agreement.txt:
+  contract_type: lease
+  numbering_style: heading_style
+  seeded_risks:
+    - penalty_clause
+  missing_clauses:
+    - assignment
+  compliance_gaps:
+    - no_stamp_duty
+
+nda.txt:
+  contract_type: nda
+  numbering_style: decimal_alpha
+  seeded_risks:
+    - missing_data_protection
+  missing_clauses:
+    - data_protection
+  compliance_gaps:
+    - no_ndpa
+
+partnership_agreement.txt:
+  contract_type: partnership
+  numbering_style: decimal_dotted
+  seeded_risks: []
+  missing_clauses:
+    - confidentiality
+  compliance_gaps:
+    - no_ama_2023
+
+service_level_agreement.txt:
+  contract_type: sla
+  numbering_style: decimal_dotted
+  seeded_risks: []
+  missing_clauses: []
+  compliance_gaps: []
+
+loan_agreement.txt:
+  contract_type: loan
+  numbering_style: clause_heading
+  seeded_risks:
+    - high_interest
+    - termination_without_notice
+  missing_clauses:
+    - notices
+  compliance_gaps:
+    - no_stamp_duty

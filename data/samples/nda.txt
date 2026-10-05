@@ -1,0 +1,116 @@
+NON-DISCLOSURE AGREEMENT
+
+This Agreement is made on the 10th day of October 2026.
+
+BETWEEN:
+
+(1) CAPITAL FINTECH SOLUTIONS LIMITED, a company incorporated in Nigeria with RC Number 1702384, having its registered office at 27 Aminu Kano Crescent, Wuse II, Abuja (hereinafter referred to as "the Discloser"); and
+
+(2) LAGOS DIGITAL MEDIA PARTNERS LIMITED, a company incorporated in Nigeria with RC Number 1836042, having its registered office at 9B Sanusi Fafunwa Street, Victoria Island, Lagos (hereinafter referred to as "the Recipient").
+
+WHEREAS the Discloser wishes to disclose certain confidential information to the Recipient for the purpose of exploring a potential business collaboration, and the Recipient has agreed to keep such information confidential on the terms of this Agreement.
+
+NOW IT IS HEREBY AGREED as follows:
+
+1. DEFINITION OF CONFIDENTIAL INFORMATION
+
+1.1 In this Agreement, "Confidential Information" means all information disclosed by the Discloser to the Recipient, whether orally, in writing or in electronic form, including but not limited to:
+
+(a) business plans, financial projections and pricing strategies;
+
+(b) software source code, algorithms and technical documentation;
+
+(c) customer names, phone numbers and other personal data;
+
+(d) marketing strategies, supplier lists and trade secrets.
+
+2. OBLIGATIONS OF THE RECIPIENT
+
+2.1 The Recipient agrees to:
+
+(a) keep all Confidential Information strictly confidential and not disclose it to any third party without the prior written consent of the Discloser;
+
+(b) use the Confidential Information solely for the purpose of evaluating the potential business collaboration;
+
+(c) restrict access to the Confidential Information to those of its employees who need to know it for the permitted purpose;
+
+(d) apply to the Confidential Information no less than the degree of care it applies to its own confidential information.
+
+2.2 The Recipient must notify the Discloser in writing within 7 days of becoming aware of any unauthorised use or disclosure of Confidential Information.
+
+2.3 The Recipient shall not copy or reproduce the Confidential Information except as strictly necessary for the permitted purpose.
+
+3. EXCLUSIONS
+
+3.1 The obligations in this Agreement shall not apply to information which:
+
+(a) is or becomes publicly available other than through a breach of this Agreement;
+
+(b) was lawfully known to the Recipient before disclosure by the Discloser;
+
+(c) is received from a third party who is not under an obligation of confidence;
+
+(d) is required to be disclosed by law or by a court of competent jurisdiction, provided the Recipient gives the Discloser written notice within 3 days of such requirement.
+
+4. RETURN OF INFORMATION
+
+4.1 Upon the written request of the Discloser, the Recipient must return or destroy all Confidential Information within 14 days of receipt of such request.
+
+4.2 The Recipient shall upon request provide a written certification of such return or destruction within 21 days of the request.
+
+5. TERM
+
+5.1 This Agreement shall come into force on the date first written above and shall continue for a term of two (2) years.
+
+5.2 The obligations of confidentiality shall survive the expiry or termination of this Agreement for a further period of three (3) years.
+
+6. REMEDIES
+
+6.1 The Recipient acknowledges that damages may not be an adequate remedy for breach of this Agreement and that the Discloser shall be entitled to seek injunctive relief.
+
+6.2 The Recipient agrees to indemnify the Discloser against all losses arising from any breach of this Agreement by the Recipient.
+
+7. TERMINATION
+
+7.1 Either party may terminate this Agreement by giving the other party thirty (30) days' written notice.
+
+7.2 Termination shall not affect any rights or obligations accrued before the date of termination.
+
+7.3 Upon termination, the Recipient must return or destroy all Confidential Information within 14 days of the date of termination.
+
+8. GENERAL
+
+8.1 This Agreement constitutes the entire agreement between the parties in relation to its subject matter.
+
+8.2 No variation of this Agreement shall be effective unless in writing and signed by both parties.
+
+8.3 Neither party may assign this Agreement without the prior written consent of the other party.
+
+9. GOVERNING LAW AND JURISDICTION
+
+9.1 This Agreement shall be governed by and construed in accordance with the laws of the Federal Republic of Nigeria.
+
+9.2 The parties agree that any dispute arising out of or in connection with this Agreement shall be subject to the exclusive jurisdiction of the High Court of the Federal Capital Territory.
+
+IN WITNESS WHEREOF the parties have executed this Agreement the day and year first above written.
+
+SIGNED for and on behalf of
+CAPITAL FINTECH SOLUTIONS LIMITED
+
+Name: Halima Yusuf Bello
+Designation: Chief Executive Officer
+Signature: ____________________
+Date: ____________________
+
+SIGNED for and on behalf of
+LAGOS DIGITAL MEDIA PARTNERS LIMITED
+
+Name: Oluwaseun Adebayo
+Designation: Director
+Signature: ____________________
+Date: ____________________
+
+In the presence of:
+Witness Name: Fatima Abdullahi
+Witness Address: 3 Gana Street, Maitama, Abuja
+Witness Signature: ____________________

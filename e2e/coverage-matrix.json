@@ -1,0 +1,21 @@
+{
+  "baseURL": "http://localhost:8611",
+  "notes": "Single-user local app. 'owner' = the lawyer using the app (lock off, or signed in). 'locked' = anyone opening the app while the password lock is on and they have not signed in. Locked must see only the sign-in form on every page, including direct URLs.",
+  "roles": ["owner", "locked"],
+  "features": [
+    {"id": "auth.sign_in", "module": "auth", "description": "Sign in with the right password; wrong password is refused", "route": "/", "access": {"owner": "allow", "locked": "deny"}},
+    {"id": "dashboard.view", "module": "dashboard", "description": "KPI cards, upcoming deadlines, risk chart, recent activity, institution logos", "route": "/", "access": {"owner": "allow", "locked": "deny"}},
+    {"id": "review.analyse", "module": "review", "description": "Upload a contract, confirm type and title, analyse, see it saved", "route": "/review", "access": {"owner": "allow", "locked": "deny"}},
+    {"id": "review.decide", "module": "review", "description": "Accept, reject and edit findings with a note; decisions persist after reload and move the progress bar", "route": "/review", "access": {"owner": "allow", "locked": "deny"}},
+    {"id": "review.show_in_text", "module": "review", "description": "Show in text scrolls the contract pane to the finding and highlights it", "route": "/review", "access": {"owner": "allow", "locked": "deny"}},
+    {"id": "register.list_filter", "module": "register", "description": "List contracts with status pills; filter by title, type, status, party", "route": "/register", "access": {"owner": "allow", "locked": "deny"}},
+    {"id": "register.status_change", "module": "register", "description": "Open a contract and change its status; persists after reload", "route": "/register", "access": {"owner": "allow", "locked": "deny"}},
+    {"id": "register.versions_diff", "module": "register", "description": "Upload a second version and compare clauses side by side", "route": "/register", "access": {"owner": "allow", "locked": "deny"}},
+    {"id": "register.delete", "module": "register", "description": "Delete a contract after confirming; it disappears from register and search", "route": "/register", "access": {"owner": "allow", "locked": "deny"}},
+    {"id": "deadlines.view_filter", "module": "deadlines", "description": "Timeline and list with 30/60/90 day filters", "route": "/deadlines", "access": {"owner": "allow", "locked": "deny"}},
+    {"id": "search.query", "module": "search", "description": "Keyword search with highlighted snippets; injection-style input is harmless", "route": "/search", "access": {"owner": "allow", "locked": "deny"}},
+    {"id": "reports.export", "module": "reports", "description": "Preview a report and download PDF and Word files", "route": "/reports", "access": {"owner": "allow", "locked": "deny"}},
+    {"id": "settings.firm_name", "module": "settings", "description": "Change the firm name; persists and appears in the report preview", "route": "/settings", "access": {"owner": "allow", "locked": "deny"}},
+    {"id": "settings.delete_all", "module": "settings", "description": "Delete all data after typing DELETE; register shows the empty state", "route": "/settings", "access": {"owner": "allow", "locked": "deny"}}
+  ]
+}
