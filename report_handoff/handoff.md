@@ -53,36 +53,24 @@ Data flow from upload to report:
 
 ### Component diagram
 
-A rendered version is in `report_handoff/architecture.png`.
+The easy-to-read version for the report is `report_handoff/architecture.png` (its source is `report_handoff/architecture.html`, so the wording can be edited). The same structure as Mermaid text:
 
 ```mermaid
 flowchart TB
-    L([Lawyer in a web browser on the same computer])
-    subgraph UI["Presentation layer: Streamlit (app.py, ui/)"]
-        direction LR
-        D[Dashboard] ~~~ R[Review a Contract] ~~~ G[Contract Register] ~~~ DL[Deadlines] ~~~ S[Search] ~~~ RP[Reports] ~~~ ST[Settings]
+    L([The lawyer, using a web browser])
+    subgraph PC["Runs on the lawyer's own computer: no contract text is sent over the internet"]
+        S1["1. Screens the lawyer uses<br/>Dashboard, Review a Contract, Contract Register,<br/>Deadlines, Search, Reports, Settings"]
+        S2["2. Analysis engine<br/>a. Read the file, b. Split into clauses, c. Label clauses,<br/>d. Check missing clauses, risks, compliance, deadlines, e. Summarise"]
+        R["Editable rules<br/>rules/*.yaml"]
+        S3[("3. Local database<br/>contracts, versions, findings,<br/>the lawyer's decisions, search index")]
+        S4["4. What the lawyer gets out<br/>PDF and Word report, version comparison,<br/>search results, upcoming deadlines"]
     end
-    subgraph CORE["Analysis pipeline: core/pipeline.py"]
-        direction LR
-        I["ingest.py<br/>PDF, DOCX, TXT to clean text"] --> SG["segment.py<br/>numbered clauses + offsets"] --> C["classify.py<br/>spaCy PhraseMatcher, 19 types"] --> F["missing.py, risk.py,<br/>compliance.py, obligations.py"] --> SM["summarise.py<br/>extractive summary"]
-    end
-    subgraph RULES["Editable rules: rules/*.yaml"]
-        direction LR
-        Y1[clause_patterns] ~~~ Y2[checklists] ~~~ Y3[risk_rules] ~~~ Y4[nigeria_compliance]
-    end
-    subgraph STORE["Local storage: storage/ (one SQLite file)"]
-        DB[("contracts, versions, clauses,<br/>findings + decisions, obligations,<br/>activity, FTS5 search index")]
-    end
-    subgraph OUT["Outputs"]
-        direction LR
-        O1["report.py<br/>PDF + Word export"] ~~~ O2["diff.py<br/>version comparison"]
-    end
-    L --> UI
-    UI -- "upload" --> CORE
-    RULES -. "read at runtime" .-> CORE
-    CORE -- "findings with source sentence" --> STORE
-    UI <-- "register, search, accept / reject / edit" --> STORE
-    STORE --> OUT
+    L --> S1
+    S1 -- "uploads a contract" --> S2
+    R -.-> S2
+    S2 -- "findings with their source sentence" --> S3
+    S1 -- "accept, reject or edit each finding" --> S3
+    S3 --> S4
 ```
 
 ### Folder and module structure

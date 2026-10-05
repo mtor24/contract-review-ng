@@ -4,8 +4,7 @@ Run from the project root:  python report_handoff/capture.py
 Starts its own copy of the app on a throwaway database seeded with the sample contracts,
 records a few lawyer decisions so the screens show real use, then saves:
   report_handoff/screenshots/01_home_or_dashboard.png ... 06_register_or_report.png
-  report_handoff/architecture.png (Mermaid rendered in a headless browser; needs internet once
-  to load the Mermaid library from a CDN, which is a build step, not part of the app)
+  report_handoff/architecture.png (rendered from report_handoff/architecture.html, offline)
 """
 
 import re
@@ -25,36 +24,6 @@ from storage.db import connect  # noqa: E402
 OUT = ROOT / "report_handoff"
 SHOTS = OUT / "screenshots"
 VIEW = {"width": 1440, "height": 900}
-
-ARCHITECTURE = """
-flowchart TB
-    L([Lawyer in a web browser on the same computer])
-    subgraph UI["Presentation layer: Streamlit (app.py, ui/)"]
-        direction LR
-        D[Dashboard] ~~~ R[Review a Contract] ~~~ G[Contract Register] ~~~ DL[Deadlines] ~~~ S[Search] ~~~ RP[Reports] ~~~ ST[Settings]
-    end
-    subgraph CORE["Analysis pipeline: core/pipeline.py"]
-        direction LR
-        I["ingest.py<br/>PDF, DOCX, TXT to clean text"] --> SG["segment.py<br/>numbered clauses + offsets"] --> C["classify.py<br/>spaCy PhraseMatcher, 19 types"] --> F["missing.py, risk.py,<br/>compliance.py, obligations.py"] --> SM["summarise.py<br/>extractive summary"]
-    end
-    subgraph RULES["Editable rules: rules/*.yaml"]
-        direction LR
-        Y1[clause_patterns] ~~~ Y2[checklists] ~~~ Y3[risk_rules] ~~~ Y4[nigeria_compliance]
-    end
-    subgraph STORE["Local storage: storage/ (one SQLite file)"]
-        DB[("contracts, versions, clauses,<br/>findings + decisions, obligations,<br/>activity, FTS5 search index")]
-    end
-    subgraph OUT["Outputs"]
-        direction LR
-        O1["report.py<br/>PDF + Word export"] ~~~ O2["diff.py<br/>version comparison"]
-    end
-    L --> UI
-    UI -- "upload" --> CORE
-    RULES -. "read at runtime" .-> CORE
-    CORE -- "findings with source sentence" --> STORE
-    UI <-- "register, search, accept / reject / edit" --> STORE
-    STORE --> OUT
-"""
 
 
 def seed_decisions(server: Server) -> dict:
@@ -119,18 +88,11 @@ def screenshots(browser) -> None:
 
 
 def architecture(browser) -> None:
-    html = f"""<!doctype html><html><head><meta charset="utf-8">
-<script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
-<style>body{{margin:0;padding:32px;background:#fff;font-family:Inter,Segoe UI,sans-serif}}</style></head>
-<body><pre class="mermaid">{ARCHITECTURE}</pre>
-<script>mermaid.initialize({{startOnLoad:true, theme:'base', flowchart:{{curve:'basis'}},
- themeVariables:{{primaryColor:'#EEF1F7', primaryBorderColor:'#1E2A44', primaryTextColor:'#1F2937',
- lineColor:'#6B7280', clusterBkg:'#F7F8FA', clusterBorder:'#B8963E', fontSize:'15px'}}}});</script>
-</body></html>"""
-    page = browser.new_page(viewport={"width": 1500, "height": 1000}, device_scale_factor=2)
-    page.set_content(html)
-    page.wait_for_selector("pre.mermaid svg")
-    page.locator("pre.mermaid").screenshot(path=str(OUT / "architecture.png"))
+    """Render report_handoff/architecture.html (hand-laid-out, easy to read) to a PNG."""
+    page = browser.new_page(viewport={"width": 1400, "height": 1000}, device_scale_factor=2)
+    page.goto((OUT / "architecture.html").as_uri())
+    page.wait_for_function("document.fonts.status === 'loaded'")
+    page.locator("#diagram").screenshot(path=str(OUT / "architecture.png"))
     print("saved architecture.png")
     page.close()
 
