@@ -1,0 +1,86 @@
+RISK RULES
+  uncapped_liability | Uncapped Liability | High | pattern_without
+  one_sided_indemnity | One-Sided Indemnity | Medium | party_balance
+  termination_without_notice | Termination Without Notice | High | pattern
+  one_sided_termination | One-Sided Termination | Medium | party_balance
+  auto_renewal_no_notice | Auto-Renewal Without Notice | Medium | pattern_without
+  foreign_governing_law | Foreign Governing Law | High | label_without
+  no_governing_law | No Governing Law | High | label_absent
+  foreign_arbitration | Foreign Arbitration | High | pattern
+  no_dispute_resolution | No Dispute Resolution | Medium | label_absent
+  missing_data_protection | Missing Data Protection | High | text_without_label
+  high_interest | High Interest Rate | High | rate_threshold
+  penalty_clause | Penalty Clause | Medium | pattern
+COMPLIANCE
+  governing_law_nigeria | Nigerian governing law | applies_to=all | fail=High | ref=Choice of law: Nigerian law for Nigerian parties and assets
+  ndpa_reference | Nigeria Data Protection Act reference | applies_to=all | fail=High | ref=Nigeria Data Protection Act 2023
+  ama_2023_reference | Arbitration and Mediation Act reference | applies_to=all | fail=Medium | ref=Arbitration and Mediation Act 2023
+  stamp_duty_reminder | Stamp duty reminder | applies_to=['lease', 'loan'] | fail=Medium | ref=Stamp Duties Act (as amended by the Finance Acts); Land Use Act 1978
+  labour_act_reference | Labour Act reference | applies_to=['employment'] | fail=Medium | ref=Labour Act, Cap L1 LFN 2004
+  employment_notice_period | Employment notice period | applies_to=['employment'] | fail=Medium | ref=Labour Act, s. 11 (minimum notice periods)
+  employment_termination_clause | Employment termination clause | applies_to=['employment'] | fail=High | ref=Labour Act, s. 11
+CHECKLISTS
+  employment (Employment Agreement): parties, term, payment, termination, confidentiality, governing_law, dispute_resolution, data_protection
+  supply (Commercial / Supply Agreement): parties, term, payment, termination, indemnity, limitation_of_liability, governing_law, dispute_resolution, force_majeure, notices
+  lease (Lease / Tenancy Agreement): parties, term, rent, termination, governing_law, dispute_resolution, notices, assignment
+  nda (Non-Disclosure Agreement): parties, confidentiality, term, termination, governing_law, dispute_resolution, data_protection
+  partnership (Partnership Agreement): parties, payment, termination, confidentiality, governing_law, dispute_resolution
+  sla (Service Level Agreement): parties, term, service_levels, payment, termination, limitation_of_liability, data_protection, governing_law, dispute_resolution
+  loan (Loan Agreement): parties, repayment, termination, governing_law, dispute_resolution, notices
+LABELS Parties, Definitions, Term, Payment, Termination, Confidentiality, Indemnity, Limitation of Liability, Governing Law, Dispute Resolution, Force Majeure, Data Protection, Assignment, Notices, Intellectual Property, Non-Compete, Rent, Repayment, Service Levels, Other
+
+== employment_agreement.txt | type: Employment Agreement | clauses segmented: 38 | labelled (not Other): 29 | distinct clause types: 9
+  missing: [('Dispute Resolution', 'High')]
+  risks: [('Termination Without Notice', 'High'), ('One-Sided Termination', 'Medium'), ('No Dispute Resolution', 'Medium')]
+  compliance: [('Nigeria Data Protection Act reference', 'High'), ('Labour Act reference', 'Medium'), ('Nigerian governing law', 'Pass'), ('Employment notice period', 'Pass'), ('Employment termination clause', 'Pass')]
+  obligations: 18 | with calculated due date: 2
+     2026-12-31 | Employer | within 30 days of the commencement date
+     2026-12-15 | Employer | within 14 days of the commencement date
+  segmentation_warning: False
+
+== lease_agreement.txt | type: Lease / Tenancy Agreement | clauses segmented: 14 | labelled (not Other): 12 | distinct clause types: 8
+  missing: [('Assignment', 'Medium')]
+  risks: [('Penalty Clause', 'Medium')]
+  compliance: [('Stamp duty reminder', 'Medium'), ('Nigerian governing law', 'Pass'), ('Arbitration and Mediation Act reference', 'Pass')]
+  obligations: 21 | with calculated due date: 1
+     2026-09-19 | Unspecified | within 14 days of the execution of this Agreement
+  segmentation_warning: False
+
+== loan_agreement.txt | type: Loan Agreement | clauses segmented: 48 | labelled (not Other): 40 | distinct clause types: 8
+  missing: [('Notices', 'Medium')]
+  risks: [('High Interest Rate', 'High'), ('Termination Without Notice', 'High'), ('One-Sided Termination', 'Medium')]
+  compliance: [('Stamp duty reminder', 'Medium'), ('Nigerian governing law', 'Pass')]
+  obligations: 14 | with calculated due date: 2
+     2026-12-15 | Unspecified | within 30 days of the Drawdown Date
+     2026-11-16 | Borrower | within 14 days of the date of this Agreement
+  segmentation_warning: False
+
+== nda.txt | type: Non-Disclosure Agreement | clauses segmented: 29 | labelled (not Other): 24 | distinct clause types: 9
+  missing: [('Data Protection', 'High')]
+  risks: [('Missing Data Protection', 'High'), ('One-Sided Indemnity', 'Medium')]
+  compliance: [('Nigeria Data Protection Act reference', 'High'), ('Nigerian governing law', 'Pass')]
+  obligations: 9 | with calculated due date: 0
+  segmentation_warning: False
+
+== partnership_agreement.txt | type: Partnership Agreement | clauses segmented: 49 | labelled (not Other): 41 | distinct clause types: 7
+  missing: [('Confidentiality', 'Medium')]
+  risks: none
+  compliance: [('Arbitration and Mediation Act reference', 'Medium'), ('Nigerian governing law', 'Pass')]
+  obligations: 23 | with calculated due date: 1
+     2026-12-31 | Each partner | within 30 days of the commencement date
+  segmentation_warning: False
+
+== service_level_agreement.txt | type: Service Level Agreement | clauses segmented: 56 | labelled (not Other): 53 | distinct clause types: 14
+  missing: none
+  risks: none
+  compliance: [('Nigerian governing law', 'Pass'), ('Nigeria Data Protection Act reference', 'Pass'), ('Arbitration and Mediation Act reference', 'Pass')]
+  obligations: 28 | with calculated due date: 1
+     2026-11-15 | Provider | within 14 days of the commencement date
+  segmentation_warning: False
+
+== supply_agreement.txt | type: Commercial / Supply Agreement | clauses segmented: 40 | labelled (not Other): 36 | distinct clause types: 11
+  missing: [('Notices', 'Medium')]
+  risks: [('High Interest Rate', 'High'), ('Uncapped Liability', 'High'), ('Foreign Governing Law', 'High'), ('Foreign Arbitration', 'High'), ('One-Sided Indemnity', 'Medium'), ('Auto-Renewal Without Notice', 'Medium')]
+  compliance: [('Nigerian governing law', 'High'), ('Arbitration and Mediation Act reference', 'Medium')]
+  obligations: 12 | with calculated due date: 0
+  segmentation_warning: False

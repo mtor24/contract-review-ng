@@ -162,3 +162,19 @@ def test_show_in_text_focuses_excerpt_in_contract_pane(page, owner_server):
     focus = pane.locator("mark.focus")
     expect(focus).to_be_visible()
     expect(focus).to_contain_text(excerpt[:60])
+
+
+@pytest.mark.cell("review.show_in_text", "owner")
+def test_show_in_text_keeps_the_risks_tab_open_for_decisions(page, owner_server):
+    # The real lawyer flow: check a finding in the text, then decide on it straight away.
+    # "Show in text" reruns the page, so this proves the Risks tab stays open across it.
+    _upload_and_analyse(page, owner_server.url, unique("Supply"), SUPPLY)
+    page.get_by_role("tab", name=RISKS_TAB).click()
+    wait_idle(page)
+    page.get_by_role("button", name="Show in text").first.click()
+    wait_idle(page)
+    expect(page.get_by_role("tab", selected=True)).to_have_text(RISKS_TAB)
+    page.get_by_role("button", name="Accept").first.click()
+    wait_idle(page)
+    expect(page.get_by_role("tab", selected=True)).to_have_text(RISKS_TAB)
+    expect(page.get_by_text(re.compile(r"Reviewed 1 of \d+"))).to_be_visible()

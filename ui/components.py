@@ -30,10 +30,14 @@ def institution_band() -> None:
         '<div class="institution-tile institution-tile--dark">'
         f'<img src="{_data_uri("eu_global.png")}" '
         'alt="European Global Institute of Innovation and Technology"></div>'
+        # The project title sits centred between the two institutions' logos.
+        '<div class="institution-caption">'
+        '<p class="institution-title">AI-Driven Contract Review and Management System Developed '
+        "with Python NLP Libraries for Nigerian Law Firms</p>"
+        "<p class=\"institution-sub\">Master's Capstone Project</p>"
+        "</div>"
         '<div class="institution-tile">'
         f'<img src="{_data_uri("docenti.png")}" alt="Docenti Global Business School"></div>'
-        "<p class=\"institution-caption\">Master's capstone prototype, European Global Institute of "
-        "Innovation and Technology and Docenti Global Business School</p>"
         "</div>"
     )
 
