@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>LexReview NG data-flow diagram</title>
+<!-- Source for docs/diagrams/data-flow-diagram.png. Edit the wording here, then run
+     python scripts/render_diagrams.py to re-render the image. -->
+<style>
+  @font-face { font-family: Inter; src: url("../../static/fonts/Inter-Variable.woff2") format("woff2"); font-weight: 100 900; }
+  :root { --navy:#1E2A44; --gold:#B8963E; --ink:#1F2937; --muted:#6B7280; --line:#D5DAE3; --soft:#F4F6FA; --goldsoft:#FFF8E6; }
+  * { box-sizing: border-box; }
+  body { margin:0; background:#fff; font-family: Inter, "Segoe UI", sans-serif; color: var(--ink); }
+  #diagram { width: 1400px; padding: 40px 48px 44px; background:#fff; }
+  h1 { margin:0 0 4px; font-size:30px; color:var(--navy); text-align:center; }
+  .subtitle { text-align:center; color:var(--muted); font-size:17px; margin-bottom:22px; }
+
+  .legend { display:flex; justify-content:center; gap:28px; margin-bottom:26px; font-size:16px; }
+  .legend span { display:inline-flex; align-items:center; gap:10px; }
+  .swatch { width:18px; height:18px; border-radius:50%; display:inline-block; }
+
+  .cols { display:grid; grid-template-columns: 60px 1fr 60px 0.82fr; column-gap: 0; align-items:center; }
+  .colhead { font-size:15px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--muted); padding-bottom:10px; }
+
+  .num { width:44px; height:44px; border-radius:50%; color:#fff; font-weight:700; font-size:19px;
+         display:flex; align-items:center; justify-content:center; background:var(--navy); }
+  .num.lawyer { background:var(--gold); }
+
+  .step { border:1.5px solid var(--line); border-radius:12px; background:var(--soft); padding:12px 16px; }
+  .step.lawyer { background:var(--goldsoft); border-color:#EAD9A6; }
+  .step b { display:block; font-size:19px; color:var(--navy); }
+  .step span { display:block; font-size:15.5px; line-height:1.45; margin-top:2px; }
+  .step code { font-size:13px; color:var(--muted); font-family: Consolas, monospace; }
+
+  .to { display:flex; align-items:center; justify-content:center; }
+  .to::before { content:""; width:30px; height:3px; background:var(--navy); }
+  .to::after { content:""; border-top:9px solid transparent; border-bottom:9px solid transparent; border-left:13px solid var(--navy); }
+
+  .data { border:1.5px dashed #9AA6BD; border-radius:12px; background:#fff; padding:12px 16px; font-size:15.5px; line-height:1.45; }
+  .data b { color:var(--navy); }
+
+  .down { grid-column: 1 / 2; display:flex; justify-content:center; height:26px; }
+  .down::before { content:""; width:3px; height:100%; background:#9AA6BD; }
+  .gap { grid-column: 2 / 5; height:26px; }
+</style>
+</head>
+<body>
+<div id="diagram">
+  <h1>LexReview NG: data-flow diagram</h1>
+  <div class="subtitle">What happens to a contract, step by step, and what each step produces. All of it happens on the lawyer's own computer.</div>
+  <div class="legend">
+    <span><i class="swatch" style="background:var(--gold)"></i>The lawyer does this</span>
+    <span><i class="swatch" style="background:var(--navy)"></i>The system does this automatically</span>
+  </div>
+
+  <div class="cols">
+    <div></div><div class="colhead">What happens</div><div></div><div class="colhead">What it produces</div>
+
+    <div class="num lawyer">1</div>
+    <div class="step lawyer"><b>Upload a contract</b><span>Drag a PDF, Word or text file onto the Review page.</span></div>
+    <div class="to"></div>
+    <div class="data"><b>The file</b>, read on this computer only</div>
+    <div class="down"></div><div class="gap"></div>
+
+    <div class="num">2</div>
+    <div class="step"><b>Read and clean the text</b><span>Takes the words out of the file and tidies quotes, page numbers and broken lines. <code>ingest.py</code></span></div>
+    <div class="to"></div>
+    <div class="data"><b>Plain text</b> of the whole contract</div>
+    <div class="down"></div><div class="gap"></div>
+
+    <div class="num lawyer">3</div>
+    <div class="step lawyer"><b>Confirm the contract type</b><span>The system suggests a type from keywords; the lawyer keeps it or changes it. <code>missing.py</code></span></div>
+    <div class="to"></div>
+    <div class="data"><b>Contract type</b>, for example Lease or Loan</div>
+    <div class="down"></div><div class="gap"></div>
+
+    <div class="num">4</div>
+    <div class="step"><b>Split into clauses</b><span>Finds where each numbered clause or heading starts and ends. <code>segment.py</code></span></div>
+    <div class="to"></div>
+    <div class="data"><b>Clauses</b>, each with its exact position in the text</div>
+    <div class="down"></div><div class="gap"></div>
+
+    <div class="num">5</div>
+    <div class="step"><b>Label each clause</b><span>Matches headings and phrases from the editable rules to name each clause, such as Termination or Governing Law. <code>classify.py, clause_patterns.yaml</code></span></div>
+    <div class="to"></div>
+    <div class="data"><b>A clause type</b> for every clause, and the words that produced it</div>
+    <div class="down"></div><div class="gap"></div>
+
+    <div class="num">6</div>
+    <div class="step"><b>Run the checks</b><span>Missing clauses, risky wording, Nigerian compliance points, and obligations with their deadlines. <code>missing.py, risk.py, compliance.py, obligations.py</code></span></div>
+    <div class="to"></div>
+    <div class="data"><b>Findings</b>, each with a severity, a plain-English reason and the sentence it came from; <b>deadlines</b> as calendar dates where the contract gives one</div>
+    <div class="down"></div><div class="gap"></div>
+
+    <div class="num">7</div>
+    <div class="step"><b>Summarise</b><span>Picks out the parties, dates, value, term and key sentences. <code>summarise.py</code></span></div>
+    <div class="to"></div>
+    <div class="data"><b>Summary</b> of the contract</div>
+    <div class="down"></div><div class="gap"></div>
+
+    <div class="num">8</div>
+    <div class="step"><b>Save to the local database</b><span>Stores the contract, the version, every clause and every finding, and indexes the text for search. <code>storage/models.py</code></span></div>
+    <div class="to"></div>
+    <div class="data"><b>Stored records</b>; every finding starts as a <b>"Suggestion"</b></div>
+    <div class="down"></div><div class="gap"></div>
+
+    <div class="num lawyer">9</div>
+    <div class="step lawyer"><b>Review each finding</b><span>Checks the source sentence, then accepts, rejects or edits the finding and adds a note.</span></div>
+    <div class="to"></div>
+    <div class="data"><b>The lawyer's decisions and notes</b>, saved with each finding</div>
+    <div class="down"></div><div class="gap"></div>
+
+    <div class="num">10</div>
+    <div class="step"><b>Produce the outputs</b><span>Builds the report and keeps the register, deadlines, search and version comparison up to date. <code>report.py, diff.py</code></span></div>
+    <div class="to"></div>
+    <div class="data"><b>PDF and Word report</b> with the decisions, <b>deadline list</b>, <b>search results</b>, <b>version comparison</b></div>
+  </div>
+</div>
+</body>
+</html>

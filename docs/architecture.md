@@ -31,88 +31,52 @@ We organised the code in four layers so that each part can be explained, tested 
 
 ### Component diagram
 
+![Component diagram: the four layers of LexReview NG and the modules in each](diagrams/component-diagram.png)
+
+The diagram shows the four layers from the lawyer's point of view. The lawyer works in the screens (1). Uploading a contract sends it through the analysis engine (2), which reads the editable rules and produces findings. Every finding is saved in the local database (3) together with the sentence it came from, and the lawyer's decisions are saved there too. The outputs (4) are built from what is stored. All of it sits inside one boundary: the lawyer's own computer.
+
+The same structure as Mermaid text, for anyone who wants to edit it in a Markdown tool:
+
 ```mermaid
-flowchart LR
-    subgraph UI["Presentation (Streamlit)"]
-        APP[app.py<br/>navigation, sidebar, lock screen]
-        DASH[Dashboard]
-        REV[Review a Contract]
-        REG[Contract Register<br/>detail, versions, delete]
-        DEAD[Deadlines]
-        SRCH[Search]
-        REP[Reports]
-        SET[Settings]
-        COMP[ui/components.py<br/>cards, badges, empty states]
-        HL[ui/highlight.py<br/>contract text pane]
+flowchart TB
+    L([The lawyer, using a web browser])
+    subgraph PC["Runs on the lawyer's own computer"]
+        S1["1. Screens<br/>Dashboard, Review, Register, Deadlines,<br/>Search, Reports, Settings"]
+        S2["2. Analysis engine<br/>read, split, label, check, summarise"]
+        R["Editable rules<br/>rules/*.yaml"]
+        S3[("3. Local database<br/>one SQLite file")]
+        S4["4. Outputs<br/>report, comparison, search, deadlines"]
     end
-
-    subgraph CORE["Analysis core (core/)"]
-        ING[ingest.py]
-        SEG[segment.py]
-        CLS[classify.py<br/>spaCy PhraseMatcher]
-        TF[tfidf.py<br/>optional, off by default]
-        MIS[missing.py]
-        RSK[risk.py]
-        CMP[compliance.py]
-        OBL[obligations.py]
-        SUM[summarise.py]
-        PIPE[pipeline.py]
-        DIFF[diff.py]
-        RPT[report.py<br/>PDF and DOCX]
-        AUTH[auth.py<br/>scrypt hashing]
-    end
-
-    subgraph RULES["Editable rules (rules/)"]
-        R1[clause_patterns.yaml]
-        R2[checklists.yaml]
-        R3[risk_rules.yaml]
-        R4[nigeria_compliance.yaml]
-    end
-
-    subgraph STORE["Storage (storage/)"]
-        DB[(SQLite<br/>data/lexreview.db)]
-        MOD[models.py]
-    end
-
-    APP --> DASH & REV & REG & DEAD & SRCH & REP & SET
-    REV --> PIPE
-    REV --> HL
-    PIPE --> ING & SEG & CLS & MIS & RSK & CMP & OBL & SUM
-    CLS -.optional.-> TF
-    CLS --> R1
-    MIS --> R2
-    RSK --> R3
-    CMP --> R4
-    REG --> DIFF
-    REP --> RPT
-    APP --> AUTH
-    DASH & REV & REG & DEAD & SRCH & REP & SET --> MOD
-    MOD --> DB
+    L --> S1
+    S1 -- "uploads a contract" --> S2
+    R -.-> S2
+    S2 -- "findings with source sentence" --> S3
+    S1 -- "accept, reject or edit" --> S3
+    S3 --> S4
 ```
 
 ### Data-flow diagram
 
+![Data-flow diagram: what happens to a contract step by step and what each step produces](diagrams/data-flow-diagram.png)
+
+Read the diagram from top to bottom. The gold steps are the ones the lawyer does (uploading, confirming the contract type and reviewing the findings); the navy steps happen automatically. The right-hand column shows the data each step hands on to the next. Two points matter for the design: every finding keeps the sentence it came from, so the lawyer can always check it, and every finding starts as a "Suggestion" until the lawyer decides.
+
+As Mermaid text:
+
 ```mermaid
-flowchart TD
-    U[Lawyer uploads PDF, DOCX or TXT] --> E[Extract text<br/>pdfplumber, python-docx]
-    E --> C[Clean text<br/>quotes, dashes, page numbers, hyphenation]
-    C --> T{Contract type}
-    T -->|auto-detected,<br/>lawyer can change it| S[Split into clauses<br/>1. / 1.1 / Clause 5 / headings]
-    S --> L[Label clauses<br/>heading keywords + phrases]
-    L --> M[Missing clause check<br/>against the type checklist]
-    L --> R[Risk rules]
-    L --> K[Nigerian compliance checks]
-    S --> O[Obligations and deadlines<br/>party + period + anchor date]
-    M & R & K & O --> F[Findings, each with source sentence and offsets]
-    F --> SUMM[Extractive summary]
-    F --> DB[(SQLite register<br/>status: suggested)]
-    DB --> W[Review workspace<br/>text pane + finding cards]
-    W -->|accept, reject, edit, note| DB
-    DB --> DL[Dashboard and Deadlines]
-    DB --> Q[Keyword search<br/>SQLite FTS5]
-    DB --> V[Version comparison]
-    DB --> P[PDF and Word report<br/>including the lawyer's decisions]
+flowchart TB
+    A["1. Lawyer uploads a contract"] --> B["2. Read and clean the text"]
+    B --> C["3. Lawyer confirms the contract type"]
+    C --> D["4. Split into clauses"]
+    D --> E["5. Label each clause"]
+    E --> F["6. Run the checks:<br/>missing clauses, risks, compliance, deadlines"]
+    F --> G["7. Summarise"]
+    G --> H[("8. Save to the local database<br/>every finding is a Suggestion")]
+    H --> I["9. Lawyer reviews each finding:<br/>accept, reject or edit"]
+    I --> J["10. Outputs: report, deadlines,<br/>search, version comparison"]
 ```
+
+The editable HTML sources of both images are in `docs/diagrams/`; after changing the wording, `python scripts/render_diagrams.py` re-renders the PNG files.
 
 ## 3. How each step works
 

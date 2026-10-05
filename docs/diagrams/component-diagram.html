@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>LexReview NG component diagram</title>
+<!-- Source for docs/diagrams/component-diagram.png. Edit the wording here, then run
+     python scripts/render_diagrams.py to re-render the image. -->
+<style>
+  @font-face { font-family: Inter; src: url("../../static/fonts/Inter-Variable.woff2") format("woff2"); font-weight: 100 900; }
+  :root { --navy:#1E2A44; --gold:#B8963E; --ink:#1F2937; --muted:#6B7280; --line:#D5DAE3; --soft:#F4F6FA; }
+  * { box-sizing: border-box; }
+  body { margin:0; background:#fff; font-family: Inter, "Segoe UI", sans-serif; color: var(--ink); }
+  #diagram { width: 1400px; padding: 40px 48px 44px; background:#fff; }
+  h1 { margin:0 0 4px; font-size:30px; color:var(--navy); text-align:center; }
+  .subtitle { text-align:center; color:var(--muted); font-size:17px; margin-bottom:28px; }
+
+  .actor { width: 520px; margin: 0 auto; text-align:center; background:var(--navy); color:#fff;
+           border-radius: 999px; padding: 14px 24px; font-size:20px; font-weight:600; }
+  .boundary { border: 2.5px dashed var(--gold); border-radius: 18px; padding: 22px 26px 26px; margin-top: 8px; position: relative; }
+  .boundary-label { position:absolute; top:-16px; left:28px; background:#fff; padding:0 12px; color:#8A6D22;
+                    font-size:16px; font-weight:650; letter-spacing:.02em; }
+
+  .layer { border: 1.5px solid var(--line); border-radius: 14px; background: var(--soft); padding: 16px 20px 18px; }
+  .layer-head { display:flex; align-items:baseline; gap:14px; margin-bottom:12px; }
+  .num { flex:none; width:38px; height:38px; border-radius:50%; background:var(--navy); color:#fff; font-weight:700;
+         font-size:19px; display:flex; align-items:center; justify-content:center; transform: translateY(6px); }
+  .title { font-size:23px; font-weight:700; color:var(--navy); }
+  .tech { font-size:15px; color:var(--muted); margin-left:auto; }
+
+  .chips { display:flex; flex-wrap:wrap; gap:10px; }
+  .chip { background:#fff; border:1.5px solid var(--line); border-radius:10px; padding:10px 16px; font-size:17px; font-weight:550; }
+
+  .arrow { display:flex; flex-direction:column; align-items:center; margin: 6px 0; }
+  .arrow .shaft { width:3px; height:22px; background:var(--navy); }
+  .arrow .head { width:0; height:0; border-left:11px solid transparent; border-right:11px solid transparent; border-top:14px solid var(--navy); }
+  .arrow .label { font-size:16px; color:var(--navy); font-weight:600; background:#FFF8E6; border:1px solid #EAD9A6;
+                  border-radius:999px; padding:4px 14px; margin:4px 0; }
+
+  .engine-row { display:grid; grid-template-columns: 1fr 250px; gap: 18px; align-items: stretch; }
+  .steps { display:grid; grid-template-columns: repeat(5, 1fr); gap: 0; align-items: stretch; }
+  .step { position:relative; background:#fff; border:1.5px solid var(--line); border-radius:12px; padding:12px 12px 10px; margin-right:26px; }
+  .step:last-child { margin-right:0; }
+  .step:not(:last-child)::after { content:""; position:absolute; right:-22px; top:50%; transform:translateY(-50%);
+       border-top:10px solid transparent; border-bottom:10px solid transparent; border-left:14px solid var(--navy); }
+  .step b { display:block; font-size:17px; color:var(--navy); margin-bottom:4px; }
+  .step span { display:block; font-size:15px; line-height:1.4; }
+  .step code { display:block; margin-top:8px; font-size:12.5px; color:var(--muted); font-family: Consolas, monospace; }
+
+  .rules { background:#FFFBF0; border:1.5px solid #EAD9A6; border-radius:14px; padding:14px 16px; position:relative; }
+  .rules::before { content:""; position:absolute; left:-17px; top:50%; transform:translateY(-50%);
+       border-top:10px solid transparent; border-bottom:10px solid transparent; border-right:14px solid var(--gold); }
+  .rules .title { font-size:19px; color:#7A5E1A; }
+  .rules p { margin:6px 0 10px; font-size:14.5px; color:var(--muted); line-height:1.4; }
+  .rules ul { margin:0; padding-left:18px; font-size:15.5px; line-height:1.6; }
+
+  .note { margin-top:12px; font-size:15.5px; color:var(--ink); background:#fff; border-left:4px solid var(--gold);
+          padding:8px 12px; border-radius:6px; }
+</style>
+</head>
+<body>
+<div id="diagram">
+  <h1>LexReview NG: component diagram</h1>
+  <div class="subtitle">The four layers of the system and the modules in each</div>
+
+  <div class="actor">The lawyer, using a web browser</div>
+  <div class="arrow"><div class="shaft"></div><div class="head"></div></div>
+
+  <div class="boundary">
+    <div class="boundary-label">Everything inside this line runs on the lawyer's own computer. No contract text is sent over the internet.</div>
+
+    <div class="layer">
+      <div class="layer-head"><div class="num">1</div><div class="title">Screens the lawyer uses</div><div class="tech">Streamlit: app.py, ui/pages/*, ui/components.py, ui/highlight.py, ui/login.py</div></div>
+      <div class="chips">
+        <div class="chip">Dashboard</div><div class="chip">Review a Contract</div><div class="chip">Contract Register</div>
+        <div class="chip">Deadlines</div><div class="chip">Search</div><div class="chip">Reports</div><div class="chip">Settings</div>
+      </div>
+    </div>
+
+    <div class="arrow"><div class="shaft"></div><div class="label">the lawyer uploads a contract</div><div class="shaft"></div><div class="head"></div></div>
+
+    <div class="engine-row">
+      <div class="layer">
+        <div class="layer-head"><div class="num">2</div><div class="title">Analysis engine</div><div class="tech">Python: core/pipeline.py</div></div>
+        <div class="steps">
+          <div class="step"><b>a. Read</b><span>Takes the text out of a PDF, Word or text file</span><code>ingest.py</code></div>
+          <div class="step"><b>b. Split</b><span>Divides the contract into numbered clauses</span><code>segment.py</code></div>
+          <div class="step"><b>c. Label</b><span>Names each clause (19 types) with spaCy phrase matching</span><code>classify.py, nlp.py<br/>tfidf.py (optional)</code></div>
+          <div class="step"><b>d. Check</b><span>Missing clauses, risks, Nigerian compliance, deadlines</span><code>missing.py, risk.py, compliance.py, obligations.py</code></div>
+          <div class="step"><b>e. Summarise</b><span>Picks out the parties, dates, value and key terms</span><code>summarise.py, money.py</code></div>
+        </div>
+      </div>
+      <div class="rules">
+        <div class="title">Editable rules</div>
+        <p>Plain text files a lawyer can change without programming (rules/*.yaml)</p>
+        <ul><li>Clause patterns</li><li>Clause checklists</li><li>Risk rules</li><li>Nigerian compliance checks</li></ul>
+      </div>
+    </div>
+
+    <div class="arrow"><div class="shaft"></div><div class="label">every finding is saved with the sentence it came from</div><div class="shaft"></div><div class="head"></div></div>
+
+    <div class="layer">
+      <div class="layer-head"><div class="num">3</div><div class="title">Local database</div><div class="tech">One SQLite file: storage/db.py (tables, search index), storage/models.py (queries)</div></div>
+      <div class="chips">
+        <div class="chip">Contracts and versions</div><div class="chip">Clauses and findings</div>
+        <div class="chip">The lawyer's decisions and notes</div><div class="chip">Deadlines</div>
+        <div class="chip">Activity log</div><div class="chip">Search index</div>
+      </div>
+      <div class="note">The lawyer reviews each finding on the screens in step 1 and accepts, rejects or edits it. Those decisions are saved here.</div>
+    </div>
+
+    <div class="arrow"><div class="shaft"></div><div class="head"></div></div>
+
+    <div class="layer">
+      <div class="layer-head"><div class="num">4</div><div class="title">What the lawyer gets out</div><div class="tech">core/report.py (PDF, Word), core/diff.py (comparison)</div></div>
+      <div class="chips">
+        <div class="chip">Review report (PDF and Word)</div><div class="chip">Version comparison</div>
+        <div class="chip">Keyword search results</div><div class="chip">Upcoming deadlines</div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
