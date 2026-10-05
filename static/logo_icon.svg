@@ -3,13 +3,13 @@
   <g fill="none" stroke-linecap="round" stroke-linejoin="round">
     <line x1="16" y1="4" x2="16" y2="24" stroke="#B8963E" stroke-width="2"/>
     <circle cx="16" cy="3" r="1.6" stroke="#B8963E" stroke-width="1.8"/>
-    <line x1="4" y1="8" x2="28" y2="8" stroke="#E5E7EB" stroke-width="2"/>
-    <line x1="5.5" y1="8" x2="1.8" y2="16" stroke="#E5E7EB" stroke-width="1.5"/>
-    <line x1="5.5" y1="8" x2="9.2" y2="16" stroke="#E5E7EB" stroke-width="1.5"/>
-    <line x1="26.5" y1="8" x2="22.8" y2="16" stroke="#E5E7EB" stroke-width="1.5"/>
-    <line x1="26.5" y1="8" x2="30.2" y2="16" stroke="#E5E7EB" stroke-width="1.5"/>
-    <path d="M1 16 A4.5 4.5 0 0 0 10 16 Z" fill="none" stroke="#E5E7EB" stroke-width="1.7"/>
-    <path d="M22 16 A4.5 4.5 0 0 0 31 16 Z" fill="none" stroke="#E5E7EB" stroke-width="1.7"/>
-    <line x1="9.5" y1="27" x2="22.5" y2="27" stroke="#E5E7EB" stroke-width="2.2"/>
+    <line x1="4" y1="8" x2="28" y2="8" stroke="#1E2A44" stroke-width="2"/>
+    <line x1="5.5" y1="8" x2="1.8" y2="16" stroke="#1E2A44" stroke-width="1.5"/>
+    <line x1="5.5" y1="8" x2="9.2" y2="16" stroke="#1E2A44" stroke-width="1.5"/>
+    <line x1="26.5" y1="8" x2="22.8" y2="16" stroke="#1E2A44" stroke-width="1.5"/>
+    <line x1="26.5" y1="8" x2="30.2" y2="16" stroke="#1E2A44" stroke-width="1.5"/>
+    <path d="M1 16 A4.5 4.5 0 0 0 10 16 Z" fill="none" stroke="#1E2A44" stroke-width="1.7"/>
+    <path d="M22 16 A4.5 4.5 0 0 0 31 16 Z" fill="none" stroke="#1E2A44" stroke-width="1.7"/>
+    <line x1="9.5" y1="27" x2="22.5" y2="27" stroke="#1E2A44" stroke-width="2.2"/>
   </g>
 </svg>

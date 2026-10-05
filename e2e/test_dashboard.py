@@ -62,3 +62,18 @@ def test_dashboard_contracts_stored_shows_seven(page, fresh_server):
     )
     expect(metric).to_be_visible()
     expect(metric.get_by_test_id("stMetricValue")).to_have_text("7")
+
+
+@pytest.mark.cell("dashboard.view", "owner")
+def test_sidebar_can_be_collapsed_and_reopened(page, owner_server):
+    # Regression: hiding Streamlit's whole toolbar also hid the "open sidebar" button,
+    # so a collapsed sidebar could never be brought back.
+    open_page(page, owner_server.url)
+    page.get_by_test_id("stSidebar").hover()
+    page.get_by_test_id("stSidebarCollapseButton").locator("button").click()
+    expand = page.get_by_test_id("stExpandSidebarButton")
+    expect(expand).to_be_visible()
+    expand.click()
+    expect(page.get_by_role("link", name="Contract Register")).to_be_visible()
+    # The developer menu and Deploy button stay hidden.
+    expect(page.get_by_test_id("stToolbarActions")).to_be_hidden()

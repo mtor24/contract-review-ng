@@ -1,8 +1,9 @@
 /* LexReview NG - the single injected stylesheet.
    Palette: navy #1E2A44, gold #B8963E, surfaces #FFFFFF on #F7F8FA. */
 
-/* Hide Streamlit chrome; lawyers only see the app. */
-[data-testid="stToolbar"],
+/* Hide Streamlit chrome; lawyers only see the app. The toolbar itself stays visible:
+   when the sidebar is collapsed, its "open sidebar" button lives inside it. */
+[data-testid="stToolbarActions"],
 [data-testid="stDecoration"],
 #MainMenu,
 footer,
